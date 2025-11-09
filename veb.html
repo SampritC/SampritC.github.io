@@ -73,86 +73,79 @@
       </section>
 
       <!-- Simulation Figures: PURELY VISUAL SLOTS -->
-      <section id="figures" class="section">
-        <h2>Simulation Figures</h2>
-        <p class="section-intro">
-          Figures below illustrate estimation error, prediction risk, and prior-learning behavior
-          of VEB compared with standard benchmarks. Captions are intentionally brief; for exact
-          settings and definitions, see the PDF and code.
-        </p>
+  
+  <section id="figures" class="section">
+  <h2>Simulation Figures</h2>
+  <p class="section-intro">
+    Selected simulation outputs for the VEB procedure. Each figure is added directly from
+    the reproducible scripts; settings are documented in the project PDF.
+  </p>
 
-        <div class="project-grid">
+  <div class="figure-list">
 
-          <!-- Example block 1 -->
-          <div class="project-card">
-            <div class="project-name">Figure 1: Posterior Means vs True Coefficients</div>
-            <img src="assets/img/veb_fig1.png"
-                 alt="VEB posterior means vs true beta"
-                 style="width:100%; border-radius:10px; margin-top:4px;">
-            <div class="project-desc">
-              Placeholder: scatter or grouped comparison of VEB, Lasso, and OLS estimates
-              against the true coefficients.
-            </div>
-          </div>
+    <!-- Figure 1 -->
+    <div class="project-card">
+      <div class="project-name">Figure 1: Posterior Means vs True Coefficients</div>
+      <img src="assets/img/veb_fig1.png"
+           alt="VEB posterior means vs true beta"
+           style="width:100%; border-radius:10px; margin-top:4px;">
+      <div class="project-desc">
+        Short caption for this plot.
+      </div>
+    </div>
 
-          <!-- Example block 2 -->
-          <div class="project-card">
-            <div class="project-name">Figure 2: Prediction Risk Across Settings</div>
-            <img src="assets/img/veb_fig2.png"
-                 alt="VEB prediction risk comparison"
-                 style="width:100%; border-radius:10px; margin-top:4px;">
-            <div class="project-desc">
-              Placeholder: test MSE (or $L_2$ error) vs $(n,p)$ / sparsity / correlation
-              for VEB and competing methods.
-            </div>
-          </div>
+    <!-- Figure 2 -->
+    <div class="project-card">
+      <div class="project-name">Figure 2: Prediction Risk Across Settings</div>
+      <img src="assets/img/veb_fig2.png"
+           alt="VEB prediction risk comparison"
+           style="width:100%; border-radius:10px; margin-top:4px;">
+      <div class="project-desc">
+        Short caption for this plot.
+      </div>
+    </div>
 
-          <!-- Example block 3 -->
-          <div class="project-card">
-            <div class="project-name">Figure 3: Learned Prior / Mixing Weights</div>
-            <img src="assets/img/veb_fig3.png"
-                 alt="VEB prior learning diagnostics"
-                 style="width:100%; border-radius:10px; margin-top:4px;">
-            <div class="project-desc">
-              Placeholder: evolution or final shape of the learned grid prior,
-              showing how the empirical Bayes fit adapts to the signal distribution.
-            </div>
-          </div>
+    <!-- Figure 3 -->
+    <div class="project-card">
+      <div class="project-name">Figure 3: Learned Prior / Mixing Weights</div>
+      <img src="assets/img/veb_fig3.png"
+           alt="VEB prior learning diagnostics"
+           style="width:100%; border-radius:10px; margin-top:4px;">
+      <div class="project-desc">
+        Short caption for this plot.
+      </div>
+    </div>
 
-          <!-- Example block 4 -->
-          <div class="project-card">
-            <div class="project-name">Figure 4: Comparison with MCMC (If Included)</div>
-            <img src="assets/img/veb_fig4.png"
-                 alt="VEB vs MCMC comparison"
-                 style="width:100%; border-radius:10px; margin-top:4px;">
-            <div class="project-desc">
-              Placeholder: side-by-side comparison with a spike-and-slab MCMC benchmark,
-              highlighting closeness of VEB at a fraction of the cost.
-            </div>
-          </div>
+    <!-- Add more figures in the same pattern, one block per plot -->
+    <!--
+    <div class="project-card">
+      <div class="project-name">Figure 4: ...</div>
+      <img src="assets/img/your_figure_name.png" alt="..." style="width:100%; border-radius:10px; margin-top:4px;">
+      <div class="project-desc">
+        Short caption.
+      </div>
+    </div>
+    -->
 
-        </div>
-      </section>
+  </div>
+</section>
 
-      <!-- Code: short, like a portfolio entry -->
-      <section id="repro" class="section">
-        <h2>Code</h2>
-        <ul class="item-list">
-          <li>
-            <span class="item-title">Implementation & Scripts</span>
-            <p class="item-desc">
-              The R implementation of the VEB algorithm, along with scripts to reproduce all
-              simulation figures on this page, is available in my GitHub repositories.
-            </p>
-            <span class="item-links">
-              <!-- Update to specific repo when ready -->
-              <a href="https://github.com/SampritC" target="_blank" rel="noopener">
-                View code on GitHub
-              </a>
-            </span>
-          </li>
-        </ul>
-      </section>
+    <!-- Add more figures in the same pattern, one block per plot -->
+    <!--
+    <div class="project-card">
+      <div class="project-name">Figure 4: ...</div>
+      <img src="assets/img/your_figure_name.png" alt="..." style="width:100%; border-radius:10px; margin-top:4px;">
+      <div class="project-desc">
+        Short caption.
+      </div>
+    </div>
+    -->
+
+  </div>
+</section>
+
+
+          
 
       <footer class="footer">
         © <span id="year"></span> Samprit Chakraborty · VEB Simulations
