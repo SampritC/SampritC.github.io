@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>VEB Simulations | Samprit Chakraborty</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+        content="Simulation results for a mean-field variational empirical Bayes procedure for high-dimensional linear regression." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Optional MathJax if you later add formulas -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <!-- Sidebar (same look as main site, minimal info like Francis Hsu pages) -->
+    <aside class="sidebar">
+      <div class="profile-block">
+        <h1 class="name">Samprit Chakraborty</h1>
+        <p class="tagline">
+          Variational Empirical Bayes · High-Dimensional Regression
+        </p>
+        <ul class="info-list">
+          <li>📍 Indian Statistical Institute</li>
+        </ul>
+        <div class="links">
+          <a href="mailto:sampritcstat@gmail.com">Email</a>
+          <a href="https://github.com/SampritC" target="_blank" rel="noopener">GitHub</a>
+          <a href="index.html">Home</a>
+          <!-- Link to full write-up PDF if you like -->
+          <a href="assets/pdf/VEB_0-5.pdf" target="_blank" rel="noopener">Project PDF</a>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="index.html#projects">⟵ Back to Projects</a>
+        <a href="#overview">Overview</a>
+        <a href="#figures">Simulation Figures</a>
+        <a href="#repro">Code</a>
+      </nav>
+
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        ◐
+      </button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+
+      <!-- Overview: SHORT, like Francis Hsu style -->
+      <section id="overview" class="section">
+        <h2>VEB: Simulation Overview</h2>
+        <p>
+          This page collects simulation results for a mean-field variational empirical Bayes
+          procedure for high-dimensional Gaussian linear regression. The method learns a discrete
+          prior on a grid and produces a fast posterior-mean estimator of $\beta$.
+          All methodological and theoretical details are in the project PDF; here we only display
+          empirical behavior.
+        </p>
+      </section>
+
+      <!-- Simulation Figures: PURELY VISUAL SLOTS -->
+      <section id="figures" class="section">
+        <h2>Simulation Figures</h2>
+        <p class="section-intro">
+          Figures below illustrate estimation error, prediction risk, and prior-learning behavior
+          of VEB compared with standard benchmarks. Captions are intentionally brief; for exact
+          settings and definitions, see the PDF and code.
+        </p>
+
+        <div class="project-grid">
+
+          <!-- Example block 1 -->
+          <div class="project-card">
+            <div class="project-name">Figure 1: Posterior Means vs True Coefficients</div>
+            <img src="assets/img/veb_fig1.png"
+                 alt="VEB posterior means vs true beta"
+                 style="width:100%; border-radius:10px; margin-top:4px;">
+            <div class="project-desc">
+              Placeholder: scatter or grouped comparison of VEB, Lasso, and OLS estimates
+              against the true coefficients.
+            </div>
+          </div>
+
+          <!-- Example block 2 -->
+          <div class="project-card">
+            <div class="project-name">Figure 2: Prediction Risk Across Settings</div>
+            <img src="assets/img/veb_fig2.png"
+                 alt="VEB prediction risk comparison"
+                 style="width:100%; border-radius:10px; margin-top:4px;">
+            <div class="project-desc">
+              Placeholder: test MSE (or $L_2$ error) vs $(n,p)$ / sparsity / correlation
+              for VEB and competing methods.
+            </div>
+          </div>
+
+          <!-- Example block 3 -->
+          <div class="project-card">
+            <div class="project-name">Figure 3: Learned Prior / Mixing Weights</div>
+            <img src="assets/img/veb_fig3.png"
+                 alt="VEB prior learning diagnostics"
+                 style="width:100%; border-radius:10px; margin-top:4px;">
+            <div class="project-desc">
+              Placeholder: evolution or final shape of the learned grid prior,
+              showing how the empirical Bayes fit adapts to the signal distribution.
+            </div>
+          </div>
+
+          <!-- Example block 4 -->
+          <div class="project-card">
+            <div class="project-name">Figure 4: Comparison with MCMC (If Included)</div>
+            <img src="assets/img/veb_fig4.png"
+                 alt="VEB vs MCMC comparison"
+                 style="width:100%; border-radius:10px; margin-top:4px;">
+            <div class="project-desc">
+              Placeholder: side-by-side comparison with a spike-and-slab MCMC benchmark,
+              highlighting closeness of VEB at a fraction of the cost.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Code: short, like a portfolio entry -->
+      <section id="repro" class="section">
+        <h2>Code</h2>
+        <ul class="item-list">
+          <li>
+            <span class="item-title">Implementation & Scripts</span>
+            <p class="item-desc">
+              The R implementation of the VEB algorithm, along with scripts to reproduce all
+              simulation figures on this page, is available in my GitHub repositories.
+            </p>
+            <span class="item-links">
+              <!-- Update to specific repo when ready -->
+              <a href="https://github.com/SampritC" target="_blank" rel="noopener">
+                View code on GitHub
+              </a>
+            </span>
+          </li>
+        </ul>
+      </section>
+
+      <footer class="footer">
+        © <span id="year"></span> Samprit Chakraborty · VEB Simulations
+      </footer>
+    </main>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
