@@ -1,4 +1,4 @@
-// Smooth scroll for internal links
+// Smooth scroll for internal section links
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', e => {
     const targetId = link.getAttribute('href').substring(1);
@@ -17,7 +17,7 @@ if (yearSpan) {
   yearSpan.textContent = new Date().getFullYear();
 }
 
-// Dark mode toggle (default = dark / cosmic)
+// Theme toggle: default dark, links styled via CSS vars
 const root = document.documentElement;
 const toggle = document.getElementById("themeToggle");
 const savedTheme = localStorage.getItem("theme");
@@ -27,7 +27,7 @@ if (savedTheme === "light") {
 } else if (savedTheme === "dark") {
   root.setAttribute("data-theme", "dark");
 } else {
-  // First visit: default to dark
+  // First visit: dark (cosmic) by default
   root.setAttribute("data-theme", "dark");
 }
 
@@ -40,7 +40,7 @@ if (toggle) {
   });
 }
 
-// Load GitHub projects
+// Load GitHub projects on main page
 async function loadProjects() {
   const container = document.getElementById("projects-list");
   if (!container) return;
@@ -50,15 +50,11 @@ async function loadProjects() {
     if (!res.ok) throw new Error("GitHub API error");
     const repos = await res.json();
 
-    // Filter:
-    // - not forks
-    // - has topic "portfolio" (you can set this in repo settings)
     const featured = repos
       .filter(r => !r.fork)
       .filter(r => (r.topics || []).includes("portfolio"))
       .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 
-    // If no repos tagged, fall back to first few non-forks
     const list = (featured.length > 0 ? featured : repos.filter(r => !r.fork)).slice(0, 12);
 
     container.innerHTML = "";
@@ -80,9 +76,7 @@ async function loadProjects() {
       const lang = document.createElement("span");
       lang.textContent = repo.language ? repo.language : "";
       const stars = document.createElement("span");
-      stars.textContent = repo.stargazers_count
-        ? `★ ${repo.stargazers_count}`
-        : "";
+      stars.textContent = repo.stargazers_count ? `★ ${repo.stargazers_count}` : "";
 
       meta.appendChild(lang);
       meta.appendChild(stars);
