@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <!-- Optional MathJax if you later add formulas -->
+  <!-- Optional MathJax if you add formulas -->
   <script>
     window.MathJax = {
       tex: {
@@ -26,121 +26,123 @@
 </head>
 
 <body>
-  <div class="page-wrapper">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="profile-block">
-        <h1 class="name">Samprit Chakraborty</h1>
-        <p class="tagline">
-          Variational Empirical Bayes · High-Dimensional Regression
-        </p>
-        <ul class="info-list">
-          <li>📍 Indian Statistical Institute</li>
-        </ul>
-        <div class="links">
-          <a href="mailto:sampritcstat@gmail.com">Email</a>
-          <a href="https://github.com/SampritC" target="_blank" rel="noopener">GitHub</a>
-          <a href="index.html">Home</a>
-          <a href="assets/pdf/VEB_0-5.pdf" target="_blank" rel="noopener">Project PDF</a>
+  <div class="site-shell">
+    <!-- Shared header -->
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="header-text">
+          <div class="site-name">Samprit Chakraborty</div>
+          <div class="site-tagline">
+            Variational Empirical Bayes · High-Dimensional Regression
+          </div>
+          <div class="site-affiliation">
+            VEB Simulation Study
+          </div>
+          <div class="header-links">
+            <a href="mailto:sampritcstat@gmail.com">Email</a>
+            <a href="https://github.com/SampritC" target="_blank" rel="noopener">GitHub</a>
+            <a href="index.html">Home</a>
+            <a href="assets/pdf/VEB_0-5.pdf" target="_blank" rel="noopener">Project PDF</a>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="photo-frame">
+            <img src="assets/img/samprit.jpg" alt="Samprit Chakraborty" />
+          </div>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            ◐ Theme
+          </button>
         </div>
       </div>
+    </header>
 
-      <nav class="sidebar-nav">
-        <a href="index.html#projects">⟵ Back to Projects</a>
-        <a href="#overview">Overview</a>
-        <a href="#figures">Simulation Figures</a>
-        <a href="#repro">Code</a>
-      </nav>
+    <!-- Two-column layout -->
+    <div class="page-layout">
+      <!-- Left contents -->
+      <aside class="side-menu">
+        <div class="side-menu-title">Contents</div>
+        <nav>
+          <a href="index.html#projects">⟵ Back to Projects</a>
+          <a href="#overview">Overview</a>
+          <a href="#figures">Simulation Figures</a>
+          <a href="#repro">Code</a>
+        </nav>
+      </aside>
 
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-        ◐
-      </button>
-    </aside>
+      <!-- Right content -->
+      <main class="main-content">
+        <!-- Overview -->
+        <section id="overview" class="section">
+          <h2>VEB: Simulation Overview</h2>
+          <p>
+            This page collects simulation results for a mean-field variational empirical Bayes
+            procedure for high-dimensional Gaussian linear regression. The method learns a discrete
+            prior on a grid and produces a fast posterior-mean estimator of $\beta$.
+            All methodological and theoretical details are in the project PDF; here we only display
+            empirical behavior.
+          </p>
+        </section>
 
-    <!-- Main Content -->
-    <main class="content">
-      <!-- Overview -->
-      <section id="overview" class="section">
-        <h2>VEB: Simulation Overview</h2>
-        <p>
-          This page collects simulation results for a mean-field variational empirical Bayes
-          procedure for high-dimensional Gaussian linear regression. The method learns a discrete
-          prior on a grid and produces a fast posterior-mean estimator of $\beta$.
-          All methodological and theoretical details are in the project PDF; here we only display
-          empirical behavior.
-        </p>
-      </section>
+        <!-- Figures -->
+        <section id="figures" class="section">
+          <h2>Simulation Figures</h2>
+          <p class="section-intro">
+            Selected simulation outputs for the VEB procedure. Each figure is added directly from
+            the reproducible scripts; settings are documented in the project PDF.
+          </p>
 
-      <!-- Simulation Figures -->
-      <section id="figures" class="section">
-        <h2>Simulation Figures</h2>
-        <p class="section-intro">
-          Selected simulation outputs for the VEB procedure. Each figure is added directly from
-          the reproducible scripts; settings are documented in the project PDF.
-        </p>
+          <div class="project-grid">
+            <!-- Figure 1 -->
+            <div class="project-card">
+              <div class="project-name">Figure 1: Posterior Means vs True Coefficients</div>
+              <img src="assets/img/veb_fig1.png"
+                   alt="VEB posterior means vs true beta"
+                   style="width:100%; border-radius:10px; margin-top:4px;">
+              <div class="project-desc">
+                Short caption for this plot.
+              </div>
+            </div>
 
-        <div class="figure-list">
-          <!-- Figure 1 -->
-          <div class="project-card">
-            <div class="project-name">Figure 1: Posterior Means vs True Coefficients</div>
-            <img src="assets/img/veb_fig1.png"
-                 alt="VEB posterior means vs true beta"
-                 style="width:100%; border-radius:10px; margin-top:4px;">
-            <div class="project-desc">
-              Short caption for this plot.
+            <!-- Figure 2 -->
+            <div class="project-card">
+              <div class="project-name">Figure 2: Prediction Risk Across Settings</div>
+              <img src="assets/img/veb_fig2.png"
+                   alt="VEB prediction risk comparison"
+                   style="width:100%; border-radius:10px; margin-top:4px;">
+              <div class="project-desc">
+                Short caption for this plot.
+              </div>
+            </div>
+
+            <!-- Figure 3 -->
+            <div class="project-card">
+              <div class="project-name">Figure 3: Learned Prior / Mixing Weights</div>
+              <img src="assets/img/veb_fig3.png"
+                   alt="VEB prior learning diagnostics"
+                   style="width:100%; border-radius:10px; margin-top:4px;">
+              <div class="project-desc">
+                Short caption for this plot.
+              </div>
             </div>
           </div>
+        </section>
 
-          <!-- Figure 2 -->
-          <div class="project-card">
-            <div class="project-name">Figure 2: Prediction Risk Across Settings</div>
-            <img src="assets/img/veb_fig2.png"
-                 alt="VEB prediction risk comparison"
-                 style="width:100%; border-radius:10px; margin-top:4px;">
-            <div class="project-desc">
-              Short caption for this plot.
-            </div>
-          </div>
-
-          <!-- Figure 3 -->
-          <div class="project-card">
-            <div class="project-name">Figure 3: Learned Prior / Mixing Weights</div>
-            <img src="assets/img/veb_fig3.png"
-                 alt="VEB prior learning diagnostics"
-                 style="width:100%; border-radius:10px; margin-top:4px;">
-            <div class="project-desc">
-              Short caption for this plot.
-            </div>
-          </div>
-
-          <!-- Add more figures in the same pattern, one block per plot -->
-          <!--
-          <div class="project-card">
-            <div class="project-name">Figure 4: ...</div>
-            <img src="assets/img/your_figure_name.png" alt="..." style="width:100%; border-radius:10px; margin-top:4px;">
-            <div class="project-desc">
-              Short caption.
-            </div>
-          </div>
-          -->
-        </div>
-      </section>
-
-      <!-- Reproducibility / Code -->
-      <section id="repro" class="section">
-        <h2>Code</h2>
-        <p>
-          All simulations and figures are generated from reproducible R scripts available in the
-          corresponding GitHub repository. Parameters, priors, and design settings are documented
-          in the project PDF.
-        </p>
-      </section>
-
-      <footer class="footer">
-        © <span id="year"></span> Samprit Chakraborty · VEB Simulations
-      </footer>
-    </main>
+        <!-- Code / reproducibility -->
+        <section id="repro" class="section">
+          <h2>Code</h2>
+          <p>
+            All simulations and figures are generated from reproducible R scripts available in the
+            corresponding GitHub repository. Parameters, priors, and design settings are documented
+            in the project PDF.
+          </p>
+        </section>
+      </main>
+    </div>
   </div>
+
+  <footer class="footer">
+    © <span id="year"></span> Samprit Chakraborty · VEB Simulations
+  </footer>
 
   <script src="assets/js/main.js"></script>
 </body>
