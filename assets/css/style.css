@@ -399,6 +399,13 @@ a:focus-visible {
   gap: 3px;
   transition: all var(--transition-fast);
 }
+.figure-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
 
 [data-theme="light"] .project-card {
   background-color: var(--bg-soft);
