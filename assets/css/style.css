@@ -173,7 +173,7 @@ a:focus-visible {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 32px;
+  gap: 24px; /* tightened to bring photo closer */
   padding: 24px 24px 22px;
   background: var(--bg-soft);
   border-radius: var(--radius-lg);
@@ -235,10 +235,11 @@ a:focus-visible {
   gap: 10px;
 }
 
-..photo-frame {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
+/* Slightly larger portrait to balance header */
+.photo-frame {
+  width: 150px;
+  height: 150px;
+  border-radius: 999px;
   overflow: hidden;
   background:
     radial-gradient(circle at 30% 0, rgba(56,189,248,0.26), transparent),
@@ -248,7 +249,6 @@ a:focus-visible {
   align-items: center;
   justify-content: center;
 }
-
 
 .photo-frame img {
   width: 100%;
@@ -492,8 +492,8 @@ samp {
   }
 
   .photo-frame {
-    width: 80px;
-    height: 80px;
+    width: 96px;
+    height: 96px;
   }
 
   .page-layout {
