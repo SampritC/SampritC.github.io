@@ -236,9 +236,9 @@ a:focus-visible {
 }
 
 ..photo-frame {
-  width: 150px;
-  height: 150px;
-  border-radius: 999px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
   overflow: hidden;
   background:
     radial-gradient(circle at 30% 0, rgba(56,189,248,0.26), transparent),
