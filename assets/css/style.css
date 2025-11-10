@@ -237,8 +237,8 @@ a:focus-visible {
 
 /* Slightly larger portrait to balance header */
 .photo-frame {
-  width: 140px;
-  height: 140px;
+  width: 150px;
+  height: 150px;
   border-radius: 999px;
   overflow: hidden;
   background:
