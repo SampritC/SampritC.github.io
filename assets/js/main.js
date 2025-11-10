@@ -17,26 +17,26 @@ if (yearSpan) {
   yearSpan.textContent = new Date().getFullYear();
 }
 
-// Dark mode toggle
+// Dark mode toggle (default = dark / cosmic)
 const root = document.documentElement;
 const toggle = document.getElementById("themeToggle");
 const savedTheme = localStorage.getItem("theme");
 
-if (savedTheme === "dark") {
+if (savedTheme === "light") {
+  root.setAttribute("data-theme", "light");
+} else if (savedTheme === "dark") {
+  root.setAttribute("data-theme", "dark");
+} else {
+  // First visit: default to dark
   root.setAttribute("data-theme", "dark");
 }
 
 if (toggle) {
   toggle.addEventListener("click", () => {
-    const current = root.getAttribute("data-theme");
+    const current = root.getAttribute("data-theme") || "dark";
     const next = current === "dark" ? "light" : "dark";
-    if (next === "dark") {
-      root.setAttribute("data-theme", "dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      root.removeAttribute("data-theme");
-      localStorage.setItem("theme", "light");
-    }
+    root.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
   });
 }
 
