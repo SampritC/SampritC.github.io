@@ -235,9 +235,9 @@ a:focus-visible {
   gap: 10px;
 }
 
-.photo-frame {
-  width: 112px;
-  height: 112px;
+..photo-frame {
+  width: 150px;
+  height: 150px;
   border-radius: 999px;
   overflow: hidden;
   background:
@@ -248,6 +248,7 @@ a:focus-visible {
   align-items: center;
   justify-content: center;
 }
+
 
 .photo-frame img {
   width: 100%;
