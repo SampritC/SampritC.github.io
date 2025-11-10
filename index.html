@@ -12,127 +12,147 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <div class="page-wrapper">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="profile-block">
-        <!-- Optional photo -->
-        <!-- <img src="assets/img/samprit.jpg" alt="Samprit Chakraborty" class="avatar" /> -->
-
-        <h1 class="name">Samprit Chakraborty</h1>
-        <p class="tagline">
-          Statistics · Probabilistic ML · High-Dimensional Inference
-        </p>
-
-        <ul class="info-list">
-          <li>📍 Kolkata, India</li>
-          <li>🏛️ Indian Statistical Institute</li>
-        </ul>
-
-        <div class="links">
-          <a href="mailto:samprit.zidan@gmail.com">Email</a>
-          <a href="https://github.com/sampritC" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://scholar.google.com" target="_blank" rel="noopener">Scholar</a>
-          <a href="Samprit_CV.pdf" target="_blank" rel="noopener">CV</a>
+  <div class="site-shell">
+    <!-- Header: name, photo, affiliation -->
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="header-text">
+          <div class="site-name">Samprit Chakraborty</div>
+          <div class="site-tagline">
+            Statistics · Probabilistic Machine Learning · High-Dimensional Inference
+          </div>
+          <div class="site-affiliation">
+            M.Stat, Indian Statistical Institute, Kolkata
+          </div>
+          <div class="header-links">
+            <a href="mailto:samprit.zidan@gmail.com">Email</a>
+            <a href="https://github.com/sampritC" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://scholar.google.com" target="_blank" rel="noopener">Scholar</a>
+            <a href="Samprit_CV.pdf" target="_blank" rel="noopener">CV</a>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="photo-frame">
+            <!-- Replace with your actual photo file -->
+            <img src="assets/img/samprit.jpg" alt="Samprit Chakraborty" />
+          </div>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            ◐ Theme
+          </button>
         </div>
       </div>
+    </header>
 
-      <nav class="sidebar-nav">
-        <a href="#about">About</a>
-        <a href="#research">Research</a>
-        <a href="#projects">Projects</a>
-        <a href="#publications">Publications</a>
-        <a href="#software">Software</a>
-        <a href="#contact">Contact</a>
-      </nav>
+    <!-- Two-column layout -->
+    <div class="page-layout">
+      <!-- Left: contents -->
+      <aside class="side-menu">
+        <div class="side-menu-title">Contents</div>
+        <nav>
+          <a href="#about">About</a>
+          <a href="#research">Research</a>
+          <a href="#projects">Projects</a>
+          <a href="#publications">Publications</a>
+          <a href="#software">Software</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </aside>
 
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-        ◐
-      </button>
-    </aside>
+      <!-- Right: main content -->
+      <main class="main-content">
+        <!-- About -->
+        <section id="about" class="section">
+          <h2>About</h2>
+          <p>
+            I am a final-year M.Stat student at the
+            <a href="https://www.isical.ac.in" target="_blank" rel="noopener">Indian Statistical Institute, Kolkata</a>, specializing in
+            <em>Theoretical Statistics</em>. My Master’s thesis, supervised by
+            <a href="https://sites.stat.columbia.edu/bodhi/Bodhi/Welcome.html" target="_blank" rel="noopener">Prof. Bodhisattva Sen</a>
+            (Columbia University), focuses on computational aspects of variational inference and empirical Bayes in high-dimensional
+            linear regression. In parallel, I work with
+            <a href="https://publichealth.jhu.edu/faculty/1826/nilanjan-chatterjee" target="_blank" rel="noopener">Prof. Nilanjan Chatterjee</a>
+            (Johns Hopkins University) on integrating individual-level and summary-level GWAS data using
+            <em>Random Matrix Theory (RMT)</em> in high-dimensional fixed-asymptotic regimes.
+          </p>
+          <p>
+            I have been fortunate to pursue research internships /visits at the
+            <a href="https://publichealth.jhu.edu/departments/biostatistics" target="_blank" rel="noopener">
+              Department of Biostatistics</a>, Johns Hopkins Bloomberg School of Public Health (Summer 2024);
+            the
+            <a href="https://sph.umich.edu/bdsi/" target="_blank" rel="noopener">
+              Big Data Summer Institute</a>, School of Public Health, University of Michigan (Summer 2023); and the
+            <a href="https://math.iiserkol.ac.in" target="_blank" rel="noopener">
+              Department of Mathematics and Statistics, IISER Kolkata
+            </a>
+            as an IAS–INSA–NASI Summer Research Fellow (Summer 2022).
+          </p>
+        </section>
 
-    <!-- Main Content -->
-    <main class="content">
-      <!-- About -->
-      <section id="about" class="section">
-        <h2>About</h2>
-        <p>
-          I am a final-year M.Stat student at the
-          <a href="https://www.isical.ac.in" target="_blank" rel="noopener">Indian Statistical Institute, Kolkata</a>, specializing in <em>Theoretical Statistics</em>. My Master’s thesis, supervised by <a href="https://sites.stat.columbia.edu/bodhi/Bodhi/Welcome.html" target="_blank" rel="noopener">Prof. Bodhisattva Sen</a> (Columbia University), focuses on computational aspects of variational inference and empirical Bayes in high-dimensional linear regression. In parallel, I work with <a href="https://publichealth.jhu.edu/faculty/1826/nilanjan-chatterjee" target="_blank" rel="noopener">Prof. Nilanjan Chatterjee</a> (Johns Hopkins University) on integrating individual-level and summary-level GWAS data using <em>Random Matrix Theory (RMT)</em> in high-dimensional fixed-asymptotic regimes.
-        </p>
-        <p>
-          I have been fortunate to pursue research internships /visits at the
-          <a href="https://publichealth.jhu.edu/departments/biostatistics" target="_blank" rel="noopener">
-            Department of Biostatistics</a>, Johns Hopkins Bloomberg School of Public Health
-          (Summer 2024); the
-          <a href="https://sph.umich.edu/bdsi/" target="_blank" rel="noopener">
-            Big Data Summer Institute</a>, School of Public Health, University of Michigan (Summer 2023); and the
-          <a href="https://math.iiserkol.ac.in" target="_blank" rel="noopener">
-            Department of Mathematics and Statistics, IISER Kolkata
-          </a>
-          as an IAS–INSA–NASI Summer Research Fellow (Summer 2022).
-        </p>
-      </section>
+        <!-- Research -->
+        <section id="research" class="section">
+          <h2>Research</h2>
+          <p>
+            My work explores mean-field and structured variational methods, empirical Bayes procedures, and random matrix–based
+            shrinkage for high-dimensional regression and genetic association studies. I am particularly interested in understanding
+            when fast approximate procedures can match or closely track fully Bayesian or likelihood-based benchmarks, both
+            theoretically and empirically.
+          </p>
+        </section>
 
-      <!-- Research -->
-      <section id="research" class="section">
-        <h2>Research</h2>
-        <p>
-          My work explores mean-field and structured variational methods, empirical Bayes
-          procedures, and random matrix–based shrinkage for high-dimensional regression
-          and genetic association studies. I am particularly interested in understanding when
-          fast approximate procedures can match or closely track fully Bayesian or
-          likelihood-based benchmarks, both theoretically and empirically.
-        </p>
-      </section>
+        <!-- Projects (from GitHub) -->
+        <section id="projects" class="section">
+          <h2>Projects</h2>
+          <p class="section-intro">
+            Selected public repositories. Repositories tagged with
+            <code>portfolio</code> on GitHub are featured automatically.
+          </p>
+          <div id="projects-list" class="project-grid">
+            <!-- Populated dynamically by main.js -->
+          </div>
+        </section>
 
-      <!-- Projects (auto from GitHub) -->
-      <section id="projects" class="section">
-        <h2>Selected Projects</h2>
-        <p class="section-intro">
-          The projects below are pulled automatically from my public GitHub repositories.
-          To feature a repository here, tag it with the topic
-          <code>portfolio</code> on GitHub.
-        </p>
-        <div id="projects-list" class="project-grid">
-          <!-- Populated dynamically by main.js -->
-        </div>
-      </section>
+        <!-- Publications (placeholder for now) -->
+        <section id="publications" class="section">
+          <h2>Publications</h2>
+          <p class="section-intro">
+            To be updated with preprints and publications.
+          </p>
+        </section>
 
-      <!-- Software -->
-      <section id="software" class="section">
-        <h2>Software</h2>
-        <ul class="item-list">
-          <li>
-            <div class="item-header">
-              <span class="item-title">Mean-Field Variational Empirical Bayes (VEB)</span>
-              <span class="item-label">R · Variational EB</span>
-            </div>
-            <div class="item-links">
-              <a href="https://github.com/sampritc" target="_blank" rel="noopener">GitHub</a>
-              <a href="veb.html">Project page</a>
-            </div>
-            <p class="item-desc">
-              Solving Empirical Bayes Estimation in High-Dimensional Linear Regression Using a Mean-Field Approach; comparisons against MCMC, Lasso, and OLS.
-            </p>
-          </li>
-        </ul>
-      </section>
+        <!-- Software -->
+        <section id="software" class="section">
+          <h2>Software</h2>
+          <ul class="item-list">
+            <li>
+              <div class="item-title">Mean-Field Variational Empirical Bayes (VEB)</div>
+              <div class="item-label">R · Variational Empirical Bayes</div>
+              <div class="header-links" style="margin-top:4px; gap:8px;">
+                <a href="https://github.com/sampritC" target="_blank" rel="noopener">GitHub</a>
+                <a href="veb.html">Project page</a>
+              </div>
+              <p>
+                Solving Empirical Bayes estimation in high-dimensional linear regression using a mean-field approach; comparisons
+                against MCMC, Lasso, and OLS.
+              </p>
+            </li>
+          </ul>
+        </section>
 
-      <!-- Contact -->
-      <section id="contact" class="section">
-        <h2>Contact</h2>
-        <p>
-          For research or collaboration, feel free to email me:
-          <a href="mailto:samprit.zidan@gmail.com">samprit.zidan@gmail.com</a>.
-        </p>
-      </section>
-
-      <footer class="footer">
-        © <span id="year"></span> Samprit Chakraborty · Hosted on GitHub Pages
-      </footer>
-    </main>
+        <!-- Contact -->
+        <section id="contact" class="section">
+          <h2>Contact</h2>
+          <p>
+            For research or collaboration, feel free to email:
+            <a href="mailto:samprit.zidan@gmail.com">samprit.zidan@gmail.com</a>.
+          </p>
+        </section>
+      </main>
+    </div>
   </div>
+
+  <footer class="footer">
+    © <span id="year"></span> Samprit Chakraborty · Hosted on GitHub Pages
+  </footer>
 
   <script src="assets/js/main.js"></script>
 </body>
