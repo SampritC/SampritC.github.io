@@ -41,8 +41,7 @@
           <div class="header-links">
             <a href="mailto:sampritcstat@gmail.com">Email</a>
             <a href="https://github.com/SampritC" target="_blank" rel="noopener">GitHub</a>
-            <a href="index.html">Home</a>
-            <a href="assets/pdf/VEB_0-5.pdf" target="_blank" rel="noopener">Project PDF</a>
+            <a href="index.html">Home</a> 
           </div>
         </div>
         <div class="header-right">
@@ -65,7 +64,7 @@
           <a href="index.html#projects">⟵ Back to Projects</a>
            <a href="#Introduction">Introduction</a>
           <a href="#Problem setup">Problem setup</a>
-          <a href="#figures">Simulations</a>
+          <a href="#Simulations">Simulations</a>
         </nav>
       </aside>
 
@@ -173,12 +172,65 @@
       
 
         <!-- Figures: stacked vertically -->
-        <section id="figures" class="section">
-          <h2>Simulation Figures</h2>
-          <p class="section-intro">
-            Selected simulation outputs for the VEB procedure. Each figure is added directly from
-            the reproducible scripts; settings are documented in the project PDF.
-          </p>
+        <section id="Simulations" class="section">
+  <h2>Simulation Setup</h2>
+
+  <p>
+    Unless stated otherwise, the simulation results below are based on the following baseline design.
+  </p>
+
+  <p style="text-align:center;">
+    \[
+    n = 800,\qquad p = 50.
+    \]
+  </p>
+
+  <p>
+    The design matrix \(\mathbf{X} \in \mathbb{R}^{n \times p}\) has entries
+    \(\mathbf{X}_{ij} \sim \mathcal{N}(0, 1/n)\), i.e.
+  </p>
+
+  <p style="text-align:center;">
+    \[
+    \mathbf{X} = \frac{1}{\sqrt{n}} \mathbf{Z},
+    \quad \mathbf{Z}_{ij} \sim \mathcal{N}(0,1),
+    \]
+  </p>
+
+  <p>
+    so that \(\|\mathbf{x}_j\|^2 = O(1)\) for each column, in line with Assumption&nbsp;1 of
+    <a href="https://arxiv.org/pdf/2309.16843" target="_blank" rel="noopener">Mukherjee et al.</a>
+  </p>
+
+  <p>
+    The true coefficients \(\boldsymbol{\beta}^\star\) are three-point sparse:
+  </p>
+
+  <p style="text-align:center;">
+    \[
+    \beta_j^\star \in \{-1, 0, 1\},\quad
+    \mathbb{P}(\beta_j^\star = -1) = 0.3,\ 
+    \mathbb{P}(\beta_j^\star = 0) = 0.4,\ 
+    \mathbb{P}(\beta_j^\star = 1) = 0.3,
+    \]
+  </p>
+
+  <p>
+    and the responses are generated as
+  </p>
+
+  <p style="text-align:center;">
+    \[
+    \mathbf{y} = \mathbf{X}\boldsymbol{\beta}^\star + \varepsilon,
+    \qquad
+    \varepsilon \sim \mathcal{N}(0, \sigma^2 \mathbf{I}_n),
+    \]
+  </p>
+
+  <p>
+    where \(\sigma^2\) is chosen to yield a non-trivial signal-to-noise regime; all methods are compared under this common design.
+  </p>
+
 
           <div class="figure-list">
             <!-- Figure 1 -->
