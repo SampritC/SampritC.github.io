@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>VEB Simulations | Samprit Chakraborty</title>
+  <title>VEB Package | Samprit Chakraborty</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description"
-        content="Simulation results for a mean-field variational empirical Bayes procedure for high-dimensional linear regression." />
+        content="Computational aspects of a mean field approach to empirical Bayes estimation in high-dimensional linear regression" />
   <link rel="stylesheet" href="assets/css/style.css" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,7 +36,7 @@
             Variational Empirical Bayes · High-Dimensional Regression
           </div>
           <div class="site-affiliation">
-            VEB Simulation Study
+            
           </div>
           <div class="header-links">
             <a href="mailto:sampritcstat@gmail.com">Email</a>
@@ -63,25 +63,96 @@
         <div class="side-menu-title">Contents</div>
         <nav>
           <a href="index.html#projects">⟵ Back to Projects</a>
-          <a href="#overview">Overview</a>
-          <a href="#figures">Simulation Figures</a>
-          <a href="#repro">Code</a>
+           <a href="#Introduction">Introduction</a>
+          <a href="#Problem setup">Problem setup</a>
+          <a href="#figures">Simulations</a>
         </nav>
       </aside>
 
       <!-- Right content -->
       <main class="main-content">
         <!-- Overview -->
-        <section id="overview" class="section">
-          <h2>VEB: Simulation Overview</h2>
+        <section id="Introduction" class="section">
+          <h2>Introduction</h2>
           <p>
-            This page collects simulation results for a mean-field variational empirical Bayes
-            procedure for high-dimensional Gaussian linear regression. The method learns a discrete
-            prior on a grid and produces a fast posterior-mean estimator of $\beta$.
-            All methodological and theoretical details are in the project PDF; here we only display
-            empirical behavior.
-          </p>
-        </section>
+  On this page, I present the simulation results and theoretical findings from my working paper
+  <em>"Solving Empirical Bayes Estimation in High-Dimensional Linear Regression Using a Mean-Field Approach"</em>,
+  which is part of my Master's thesis supervised by
+  <a href="https://sites.stat.columbia.edu/bodhi/Bodhi/Welcome.html" target="_blank" rel="noopener">Prof. Bodhisattva Sen</a>.
+  This work focuses on the computational aspects of
+  <a href="https://arxiv.org/pdf/2309.16843" target="_blank" rel="noopener">
+    "A Mean Field Approach to Empirical Bayes Estimation in High-dimensional Linear Regression"
+  </a>.
+  We develop an algorithm for this problem and compare its performance with LASSO, OLS, MCMC, and we also compare our algorithm with existing CAVI method.
+  We also establish several theoretical results for our algorithm.
+</p>
+</section>
+
+        <section id="Problem setup" class="section">
+          <h2>Problem setup</h2>
+          <p>
+    We study an empirical Bayes approach to high-dimensional Gaussian linear regression. 
+    The data follow
+  </p>
+
+  <p style="text-align:center;">
+    \[
+    \mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \varepsilon,\quad 
+    \varepsilon \sim \mathcal{N}\!\left(0, \sigma^2 \mathbf{I}_n\right),
+    \]
+  </p>
+
+  <p>
+    where \(\mathbf{y} \in \mathbb{R}^n\) is the response vector, 
+    \(\mathbf{X} \in \mathbb{R}^{n \times p}\) is the design matrix with columns 
+    \(\mathbf{x}_1, \dots, \mathbf{x}_p\), \(\boldsymbol{\beta} = (\beta_1,\dots,\beta_p)^\top\) 
+    are the unknown regression coefficients, and \(\sigma^2 > 0\) is treated as known.
+  </p>
+
+  <p>
+    In an empirical Bayes formulation, we place an unknown prior \(\mu\) on each coefficient and assume
+    \(\beta_j \overset{\text{iid}}{\sim} \mu\) for \(j = 1,\dots,p\). 
+    We approximate \(\mu\) by a discrete distribution supported on a fixed grid 
+    \(\mathcal{A} = \{a_1 < \dots < a_k\} \subset \mathbb{R}\), for example a fine grid in \([-1.5, 1.5]\):
+  </p>
+
+  <p style="text-align:center;">
+    \[
+    \mu(\mathrm{d}t) \approx \sum_{\ell=1}^k \pi_\ell \,\delta_{a_\ell}(\mathrm{d}t),
+    \quad 
+    \boldsymbol{\pi} = (\pi_1,\dots,\pi_k)^\top \in \Delta^{k-1},
+    \]
+  </p>
+
+  <p>
+    where \(\Delta^{k-1} = \{\boldsymbol{\pi}: \pi_\ell \ge 0,\ \sum_{\ell=1}^k \pi_\ell = 1\}\) is the simplex 
+    and \(\delta_{a_\ell}\) is a point mass at \(a_\ell\). The empirical Bayes goal is to learn 
+    \(\boldsymbol{\pi}\) from the data.
+  </p>
+
+  <p>
+    Instead of maximizing the intractable marginal likelihood
+    \(p(\mathbf{y} \mid \boldsymbol{\pi})\), we use a mean-field variational approximation. 
+    We approximate the posterior by a product measure
+  </p>
+
+  <p style="text-align:center;">
+    \[
+    q(\boldsymbol{\beta}) = \prod_{j=1}^p q_j(\beta_j),
+    \quad
+    q_j(\beta_j) = \sum_{\ell=1}^k r_{j\ell}\,\delta_{a_\ell}(\beta_j),
+    \quad 
+    \mathbf{r}_j \in \Delta^{k-1},
+    \]
+  </p>
+
+  <p>
+    and jointly optimize the mixing weights \(\boldsymbol{\pi}\) and the local weights 
+    \(\{\mathbf{r}_j\}_{j=1}^p\) by maximizing the corresponding evidence lower bound (ELBO).
+    The resulting estimator provides a fast, discrete-grid empirical Bayes procedure that we
+    study numerically in the simulations below.
+  </p>
+       </section>
 
         <!-- Figures: stacked vertically -->
         <section id="figures" class="section">
