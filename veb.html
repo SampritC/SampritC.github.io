@@ -132,8 +132,7 @@
 
   <p>
     Instead of maximizing the intractable marginal likelihood
-    \(p(\mathbf{y} \mid \boldsymbol{\pi})\), we use a mean-field variational approximation. 
-    We approximate the posterior by a product measure
+    \(p(\mathbf{y} \mid \boldsymbol{\pi})\), we use a mean-field variational approximation, where we approximate the posterior with a factorized distribution from the mean-field family
   </p>
 
   <p style="text-align:center;">
@@ -149,10 +148,29 @@
   <p>
     and jointly optimize the mixing weights \(\boldsymbol{\pi}\) and the local weights 
     \(\{\mathbf{r}_j\}_{j=1}^p\) by maximizing the corresponding evidence lower bound (ELBO).
-    The resulting estimator provides a fast, discrete-grid empirical Bayes procedure that we
-    study numerically in the simulations below.
+    From the optimal variational distribution, we form the coordinate-wise posterior mean
   </p>
-       </section>
+      <p style="text-align:center;">
+    \[
+    \boldsymbol{u}
+    \;=\;
+    \mathbb{E}_q[\boldsymbol{\beta}]
+    =
+    (u_1,\dots,u_p)^\top,
+    \qquad
+    u_j
+    =
+    \sum_{\ell=1}^k a_\ell\, r_{j\ell},
+    \]
+  </p>
+
+  <p>
+    which serves as the empirical Bayes estimator of \(\boldsymbol{\beta}\) produced by our algorithm.
+    The simulation results below compare this estimator against OLS, Lasso, MCMC-based benchmarks,
+    and existing CAVI-type methods.
+  </p>
+</section>
+      
 
         <!-- Figures: stacked vertically -->
         <section id="figures" class="section">
