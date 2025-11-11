@@ -113,7 +113,7 @@
     In an empirical Bayes formulation, we place an unknown prior \(\mu\) on each coefficient and assume
     \(\beta_j \overset{\text{iid}}{\sim} \mu\) for \(j = 1,\dots,p\). 
     We approximate \(\mu\) by a discrete distribution supported on a fixed grid 
-    \(\mathcal{A} = \{a_1 < \dots < a_k\} \subset \mathbb{R}\), for example a fine grid in \([-1.5, 1.5]\):
+    \(\mathcal{A} = \{a_1 < \dots < a_k\} \subset \mathbb{R}\), for example a fine grid in \([-1.5, 1.5]\) (suppose support of the prior is \([-1, 1]\), so keep lower and upper value of these grid points a little relaxed):
   </p>
 
   <p style="text-align:center;">
@@ -142,7 +142,7 @@
     \quad
     q_j(\beta_j) = \sum_{\ell=1}^k r_{j\ell}\,\delta_{a_\ell}(\beta_j),
     \quad 
-    \mathbf{r}_j \in \Delta^{k-1},
+    \mathbf{r}_j = (r_{j1}, \dots, r_{jk})^\top \in \Delta^{k-1},
     \]
   </p>
 
