@@ -231,54 +231,22 @@
     where \(\sigma^2\) is chosen to yield a non-trivial signal-to-noise regime; all methods are compared under this common design.
   </p>
 
+</section>
 
-          <div class="figure-list">
-            <!-- Figure 1 -->
-            <div class="project-card">
-              <div class="project-name">Figure 1: Posterior Means vs True Coefficients</div>
-              <img src="assets/img/veb_fig1.png"
-                   alt="VEB posterior means vs true beta"
-                   style="width:100%; border-radius:10px; margin-top:4px;">
-              <div class="project-desc">
-                Short caption for this plot.
-              </div>
-            </div>
+      <section id="prior-evolution" class="section">
+  <h2>Prior Evolution (Animation)</h2>
+  <p>
+    The clip below shows how the estimated prior mass on the grid \(\mathcal{A}\) evolves over
+    iterations of our algorithm. The mass gradually concentrates near the signal
+    values, illustrating how the empirical Bayes procedure adapts to the underlying sparsity pattern.
+  </p>
 
-            <!-- Figure 2 -->
-            <div class="project-card">
-              <div class="project-name">Figure 2: Prediction Risk Across Settings</div>
-              <img src="assets/img/veb_fig2.png"
-                   alt="VEB prediction risk comparison"
-                   style="width:100%; border-radius:10px; margin-top:4px;">
-              <div class="project-desc">
-                Short caption for this plot.
-              </div>
-            </div>
-
-            <!-- Figure 3 -->
-            <div class="project-card">
-              <div class="project-name">Figure 3: Learned Prior / Mixing Weights</div>
-              <img src="assets/img/veb_fig3.png"
-                   alt="VEB prior learning diagnostics"
-                   style="width:100%; border-radius:10px; margin-top:4px;">
-              <div class="project-desc">
-                Short caption for this plot.
-              </div>
-            </div>
-
-            <!-- Add more figures by duplicating the block above -->
-          </div>
-        </section>
-
-        <!-- Code / reproducibility -->
-        <section id="repro" class="section">
-          <h2>Code</h2>
-          <p>
-            All simulations and figures are generated from reproducible R scripts available in the
-            corresponding GitHub repository. Parameters, priors, and design settings are documented
-            in the project PDF.
-          </p>
-        </section>
+  <video class="veb-video" controls preload="metadata">
+    <source src="assets/video/prior_evolution_strong_changes.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</section>
+        
       </main>
     </div>
   </div>
