@@ -454,6 +454,34 @@ a:focus-visible {
   gap: 12px;
   margin-top: 8px;
 }
+.video-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 8px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.video-col {
+  flex: 1 1 260px;
+}
+
+.veb-video {
+  width: 100%;
+  display: block;
+  margin-top: 6px;
+  border-radius: 12px;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.9);
+  background-color: #000;
+}
+
+/* On small screens, stack them */
+@media (max-width: 900px) {
+  .video-row {
+    flex-direction: column;
+  }
+}
 
 /* Inline code / math */
 
