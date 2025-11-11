@@ -65,7 +65,11 @@
            <a href="#Introduction">Introduction</a>
           <a href="#Problem setup">Problem setup</a>
           <a href="#prior-evolution">Prior evolution</a>
-          <a href="#Simulations">Simulation figures</a>
+          <a href="#Simulations">Posterior Mean vs True Coefficients</a>
+          <a href="#Comparison with Lasso Relative to True Coefficients">Comparison with Lasso Relative to True Coefficients</a>
+          <a href="#Comparison with OLS and LASSO">Comparison with OLS and LASSO</a>
+          <a href="#convergence">Convergence diagnostics</a>
+          
         </nav>
       </aside>
 
@@ -261,6 +265,8 @@
     bubble size encodes the corresponding posterior variance.
   </div>
 </div>
+</section>
+        <section id="Comparison with Lasso Relative to True Coefficients" class="section">
         <h2>Comparison with Lasso Relative to True Coefficients</h2>
         <div class="project-card">
   <div class="project-name">
@@ -276,6 +282,8 @@
   Right: VEB posterior means align closely with the diagonal at \(-1, 0, 1\), indicating better recovery of the true signal.
 </div>
 </div>
+</section>
+    <section id="Comparison with OLS and LASSO" class="section">
        <h2>Comparison with OLS and LASSO</h2>
         <div class="project-card">
   <div class="project-name">
@@ -312,8 +320,8 @@
         <source src="assets/video/w1_convergence_700iter.mp4" type="video/mp4"/>
       </video>
     </div>
- <div class="video-col">
-      <<h3>L<sub>2</sub> Change in Posterior Mean</h3>
+    <div class="video-col">
+      <h3>L<sub>2</sub> Change in Posterior Mean</h3>
       <p class="section-intro">
         \(\big\|\hat{\boldsymbol{u}}^{(t)} - \hat{\boldsymbol{u}}^{(t-1)}\big\|_2\), the L<sub>2</sub>-norm of the
         difference between successive posterior mean iterates. Its decay toward zero reflects numerical
