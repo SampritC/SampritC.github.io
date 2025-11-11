@@ -438,6 +438,16 @@ a:focus-visible {
 
 /* Figure list on VEB page (stacked) */
 
+.veb-video {
+  width: 100%;
+  max-width: 720px;
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 12px;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.9);
+  background-color: #000;
+}
+
 .figure-list {
   display: flex;
   flex-direction: column;
