@@ -10,14 +10,15 @@
   --font-alt: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
+  /* Dark (default) */
   --bg: #020817;
   --bg-soft: rgba(6, 11, 25, 0.98);
   --text: #e5e7eb;
   --muted: #9ca3af;
-  --accent: #38bdf8; /* sky for dark */
+  --accent: #38bdf8;            /* sky for dark */
   --border: rgba(148, 163, 253, 0.22);
 
-  --link-color: #38bdf8;
+  --link-color: #38bdf8;        /* links: sky in dark */
   --link-hover: #7dd3fc;
 
   --radius-lg: 24px;
@@ -25,7 +26,7 @@
   --shadow-soft: 0 26px 90px rgba(15, 23, 42, 0.9);
   --transition-fast: 0.18s ease-in-out;
 
-  --base-font-size: 17px; /* slightly larger */
+  --base-font-size: 17px;       /* slightly larger for readability */
 }
 
 [data-theme="light"] {
@@ -33,10 +34,10 @@
   --bg-soft: #ffffff;
   --text: #111827;
   --muted: #6b7280;
-  --accent: #1d4ed8; /* deep blue */
+  --accent: #1d4ed8;            /* deep blue for accents */
   --border: #e5e7eb;
 
-  --link-color: #1d4ed8;
+  --link-color: #1d4ed8;        /* links: deep blue in light */
   --link-hover: #1d4ed8;
 
   --shadow-soft: 0 16px 46px rgba(15, 23, 42, 0.08);
@@ -124,14 +125,8 @@ body::after {
 }
 
 @keyframes twinkle {
-  0% {
-    opacity: 0.3;
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    opacity: 0.9;
-    transform: translate3d(-14px, -10px, 0);
-  }
+  0%   { opacity: 0.3; transform: translate3d(0, 0, 0); }
+  100% { opacity: 0.9; transform: translate3d(-14px, -10px, 0); }
 }
 
 /* =========================
@@ -173,7 +168,7 @@ a:focus-visible {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px; /* tightened to bring photo closer */
+  gap: 24px; /* bring photo closer */
   padding: 24px 24px 22px;
   background: var(--bg-soft);
   border-radius: var(--radius-lg);
@@ -237,8 +232,8 @@ a:focus-visible {
 
 /* Slightly larger portrait to balance header */
 .photo-frame {
-  width: 150px;
-  height: 150px;
+  width: 168px;
+  height: 168px;
   border-radius: 999px;
   overflow: hidden;
   background:
@@ -357,35 +352,44 @@ a:focus-visible {
   font-size: 0.86rem;
   color: var(--muted);
 }
-.math-block { text-align: center; margin: 6px 0 10px; }
+
+/* =========================
+   Lists & math helpers (global)
+   ========================= */
+
 .section ul, .section ol { margin-left: 1.1rem; padding-left: 1.1rem; }
 .section li { margin: 4px 0; }
+.math-block { text-align: center; margin: 6px 0 10px; }
 
-/* Lists */
+/* --- Stable layout for the theorem section (works on desktop + mobile) --- */
+#theorem { contain: layout; }                      /* isolate layout to prevent auto “repairs” */
+#theorem p { margin: 0 0 0.8em; }
 
-.item-list {
-  list-style: none;
+#theorem ul, #theorem ol {
+  list-style-position: outside;
+  margin: 0 0 0.9em 1.25em;
   padding: 0;
-  margin: 0;
+}
+#theorem li { margin: 0.35em 0; }
+
+#theorem .math-block,
+#theorem .math-line {
+  display: block;
+  text-align: center;
+  margin: 6px 0 10px;
 }
 
-.item-list li {
-  margin-bottom: 10px;
+/* Make MathJax containers behave inline-block so lists don’t break */
+#theorem mjx-container {
+  display: inline-block !important;
+  vertical-align: middle;
 }
 
-.item-title,
-.pub-title {
-  font-weight: 600;
-}
+#theorem h4 { margin-top: 1rem; }
 
-.item-label,
-.pub-venue,
-.pub-authors {
-  font-size: 0.8rem;
-  color: var(--muted);
-}
-
-/* Project / figure cards */
+/* =========================
+   Project / figure cards
+   ========================= */
 
 .project-grid {
   display: grid;
@@ -417,15 +421,8 @@ a:focus-visible {
   border-color: var(--accent);
 }
 
-.project-name {
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.project-desc {
-  font-size: 0.8rem;
-  color: var(--muted);
-}
+.project-name { font-size: 0.9rem; font-weight: 600; }
+.project-desc { font-size: 0.8rem; color: var(--muted); }
 
 .project-meta {
   font-size: 0.72rem;
@@ -435,11 +432,33 @@ a:focus-visible {
   gap: 4px;
 }
 
-.project-link {
-  font-size: 0.78rem;
+.project-link { font-size: 0.78rem; }
+
+/* =========================
+   VEB page: figures & videos
+   ========================= */
+
+.figure-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
 }
 
-/* Figure list on VEB page (stacked) */
+/* Side-by-side video row */
+.video-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 8px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.video-col {
+  flex: 1 1 360px;       /* grow, shrink, base width */
+  max-width: 48%;
+}
 
 .veb-video {
   width: 100%;
@@ -451,46 +470,17 @@ a:focus-visible {
   background-color: #000;
 }
 
-.figure-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 8px;
-}
-.video-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 8px;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-
-.video-col {
-  flex: 1 1 260px;
-}
-
-.veb-video {
-  width: 100%;
-  display: block;
-  margin-top: 6px;
-  border-radius: 12px;
-  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.9);
-  background-color: #000;
-}
-
-/* On small screens, stack them */
+/* Stack videos on small screens */
 @media (max-width: 900px) {
-  .video-row {
-    flex-direction: column;
-  }
+  .video-row { flex-direction: column; }
+  .video-col { max-width: 100%; }
 }
 
-/* Inline code / math */
+/* =========================
+   Inline code / math
+   ========================= */
 
-code,
-kbd,
-samp {
+code, kbd, samp {
   font-family: var(--font-mono);
   font-size: 0.8rem;
   padding: 2px 5px;
@@ -506,7 +496,9 @@ samp {
   color: #bfdbfe;
 }
 
-/* Footer */
+/* =========================
+   Footer
+   ========================= */
 
 .footer {
   max-width: 1180px;
@@ -522,9 +514,7 @@ samp {
    ========================= */
 
 @media (max-width: 900px) {
-  .site-shell {
-    padding: 22px 14px 26px;
-  }
+  .site-shell { padding: 22px 14px 26px; }
 
   .header-inner {
     flex-direction: row;
@@ -532,10 +522,7 @@ samp {
     gap: 18px;
   }
 
-  .photo-frame {
-    width: 96px;
-    height: 96px;
-  }
+  .photo-frame { width: 110px; height: 110px; }
 
   .page-layout {
     grid-template-columns: 1fr;
@@ -565,34 +552,4 @@ samp {
     flex-wrap: wrap;
     gap: 8px 12px;
   }
-   /* --- Robust list + math layout just for the #theorem section --- */
-#theorem { contain: layout; }                 /* isolates layout */
-#theorem ul, #theorem ol {
-  list-style-position: outside;
-  margin: 0 0 0.9em 1.25em;                  /* stable indent */
-  padding: 0;
-}
-#theorem li { margin: 0.35em 0; }
-#theorem .math-block {
-  display: block;                             /* block-level wrapper for MathJax */
-  text-align: center;
-  margin: 6px 0 10px;
-}
-#theorem p { margin: 0 0 0.8em; }
-
-   /* Stable layout for the theorem section (safe with MathJax) */
-#theorem { contain: layout; }
-#theorem p { margin: 0 0 0.8em; }
-#theorem .math-block {
-  display: block;
-  text-align: center;
-  margin: 6px 0 10px;
-}
-/* Make MathJax’s SVG container behave nicely in blocks */
-#theorem .math-block mjx-container[jax="SVG"] {
-  display: inline-block !important;
-  vertical-align: middle;
-}
-#theorem h4 { margin-top: 1rem; }
-
 }
