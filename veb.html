@@ -356,12 +356,12 @@
     \(t = 0,1,2,\dots\), we track:
   </p>
 
-  <p>the posterior means of the regression coefficients \(u^{(t)} \in \mathbb{R}^p\);</p>
-  <p>the learned prior weights \(\pi^{(t)} \in \Delta^{k-1}\) on the grid;</p>
-  <p>a two-layer update:</p>
-  <p><strong>EM step.</strong> Update \(\pi^{(t)} \mapsto \pi^{(t+1)}\) by averaging responsibilities across coordinates (standard EM for the mixing weights).</p>
-  <p><strong>Inner optimisation step (BFGS).</strong> With \(\pi^{(t+1)}\) fixed, refine the site-specific variational parameters via a short BFGS loop on the inner objective, starting from the previous iterate.</p>
-  <p>Unlike closed-form CAVI, this is a genuinely <em>two-layer EM + BFGS</em> scheme; the numerical inner solver matters for the convergence behaviour stated below.</p>
+  <p class="p-bullet">the posterior means of the regression coefficients \(u^{(t)} \in \mathbb{R}^p\);</p>
+  <p class="p-bullet">the learned prior weights \(\pi^{(t)} \in \Delta^{k-1}\) on the grid;</p>
+  <p class="p-bullet">a two-layer update:</p>
+  <p class="p-sub"><strong>EM step.</strong> Update \(\pi^{(t)} \mapsto \pi^{(t+1)}\) by averaging responsibilities across coordinates (standard EM for the mixing weights).</p>
+  <p class="p-sub"><strong>Inner optimisation step (BFGS).</strong> With \(\pi^{(t+1)}\) fixed, refine the site-specific variational parameters via a short BFGS loop on the inner objective, starting from the previous iterate.</p>
+  <p class="p-note">Unlike closed-form CAVI, this is a genuinely <em>two-layer EM + BFGS</em> scheme; the numerical inner solver matters for the convergence behaviour stated below.</p>
 
   <p>To measure convergence, we monitor:</p>
 
@@ -401,9 +401,9 @@
   </p>
 
   <p>Assume:</p>
-  <p><strong>Weak regression coupling:</strong> \(\|M\|_{\mathrm{op}} = O_{\mathbb{P}}(\sqrt{p/n})\), hence \(\|M\|_{\mathrm{op}} \to 0\) under \(p=o(n)\).</p>
-  <p><strong>Non-degenerate limiting prior:</strong> The limit \(\pi^\star\) puts positive mass on at least two grid points.</p>
-  <p><strong>Two-layer EM + BFGS update:</strong> Each outer iteration has (i) the EM update of \(\pi\), then (ii) a short BFGS run that attains first-order accuracy for the inner optimum.</p>
+  <p class="p-bullet"><strong>Weak regression coupling:</strong> \(\|M\|_{\mathrm{op}} = O_{\mathbb{P}}(\sqrt{p/n})\), hence \(\|M\|_{\mathrm{op}} \to 0\) under \(p=o(n)\).</p>
+  <p class="p-bullet"><strong>Non-degenerate limiting prior:</strong> The limit \(\pi^\star\) puts positive mass on at least two grid points.</p>
+  <p class="p-bullet"><strong>Two-layer EM + BFGS update:</strong> Each outer iteration has (i) the EM update of \(\pi\), then (ii) a short BFGS run that attains first-order accuracy for the inner optimum.</p>
 
   <p>Then there exists \(\lambda \in (0,1)\) such that</p>
   <div class="math-block">
