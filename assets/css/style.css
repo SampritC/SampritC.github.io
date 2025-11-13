@@ -565,6 +565,21 @@ samp {
     flex-wrap: wrap;
     gap: 8px 12px;
   }
+   /* --- Robust list + math layout just for the #theorem section --- */
+#theorem { contain: layout; }                 /* isolates layout */
+#theorem ul, #theorem ol {
+  list-style-position: outside;
+  margin: 0 0 0.9em 1.25em;                  /* stable indent */
+  padding: 0;
+}
+#theorem li { margin: 0.35em 0; }
+#theorem .math-block {
+  display: block;                             /* block-level wrapper for MathJax */
+  text-align: center;
+  margin: 6px 0 10px;
+}
+#theorem p { margin: 0 0 0.8em; }
+
    /* Stable layout for the theorem section (safe with MathJax) */
 #theorem { contain: layout; }
 #theorem p { margin: 0 0 0.8em; }
