@@ -359,24 +359,22 @@
   <p class="p-sub"><strong>Inner optimisation step (BFGS).</strong> With \(\pi^{(t+1)}\) fixed, refine the site-specific variational parameters via a short BFGS loop on the inner objective, starting from the previous iterate.</p>
   <p class="p-note">Unlike closed-form CAVI, this is a genuinely <em>two-layer EM + BFGS</em> scheme; the numerical inner solver matters for the convergence behaviour stated below.</p>
 
-  <p style="text-align:center;">To measure convergence, we monitor:</p>
-
-  <p style="text-align:center;">The L<sub>2</sub> change in the posterior mean:</p>
+  <p style="text-align:center;">To measure convergence, we monitor:
+  The L<sub>2</sub> change in the posterior mean:
   <div class="math-block">
     \[
       \Delta_u^{(t)} := \big\| u^{(t)} - u^{(t-1)} \big\|_2 .
     \]
   </div>
-
-  <p style="text-align:center;">The W<sub>1</sub> change in the prior:</p>
+  The W<sub>1</sub> change in the prior:
   <div class="math-block">
     \[
       \Delta_\pi^{(t)} := W_1\!\big(\pi^{(t)}, \pi^{(t-1)}\big),
     \]
   </div>
-  <p>computed on the same fixed grid \(\{a_\ell\}\).</p>
-
-  <p style="text-align:center;">The off-diagonal coupling induced by the design is captured by</p>
+  computed on the same fixed grid \(\{a_\ell\}\). 
+</p>
+ <p style="text-align:center;">The off-diagonal coupling induced by the design is captured by</p>
   <div class="math-block">
     \[
       M \;:=\; \frac{X^\top X}{\sigma^2}
