@@ -69,7 +69,7 @@
           <a href="#Comparison with Lasso Relative to True Coefficients">Comparison with Lasso Relative to True Coefficients</a>
           <a href="#Comparison with OLS and LASSO">Comparison with OLS and LASSO</a>
           <a href="#convergence">Convergence diagnostics</a>
-          
+          <a href="#theorem">Simulation to Theory</a>
         </nav>
       </aside>
 
@@ -338,131 +338,157 @@
     </div>
   </div>
 </section>
-      <section id="theorem" class="section">
-      <h2>Convergence theorem for the two diagnostics (EM + BFGS regime)</h2>
+                <section id="theorem" class="section">
+  <h2>Simulation to Theory</h2>
 
-<p>
-The two videos above are not just a numerical coincidence: in this regime, the
-<span style="white-space:nowrap;">L<sub>2</sub> change in the posterior mean</span> and the
-<span style="white-space:nowrap;">W<sub>1</sub> change in the prior</span> really do decay at
-essentially the <em>same geometric rate</em>.
-The theorem below formalises exactly what the animations are hinting at.
-</p>
+  <p>
+    The two convergence videos above are not just a numerical curiosity: in the regime considered
+    here, the <span style="white-space:nowrap;">L<sub>2</sub> change in the posterior mean</span> and
+    the <span style="white-space:nowrap;">W<sub>1</sub> change in the prior</span> really do decay at
+    essentially the <em>same geometric rate</em>. The theorem below formalises exactly what the
+    animations are hinting at.
+  </p>
 
-<p>
-Recall that the algorithm runs in <strong>β-space</strong> with a fixed 1D grid
-\(\{a_\ell\}_{\ell=1}^K\subset[-A,A]\). At outer iteration \(t=0,1,2,\dots\), we track:
-</p>
+  <p>
+    In these simulations the algorithm runs in β–space on a fixed 1D grid
+    \(\{a_\ell\}_{\ell=1}^k \subset [-A,A]\) (here \(A = 1.5\)). At outer iteration
+    \(t = 0,1,2,\dots\), we track:
+  </p>
 
-<ul>
-  <li>The posterior means of the regression coefficients \(u^{(t)}\in\mathbb{R}^p\) (β-space);</li>
-  <li>The learned prior weights \(\pi^{(t)}\in\Delta_K\) on the grid;</li>
-  <li>An outer update that has two layers:
-    <ul>
-      <li><strong>EM step:</strong> update \(\pi^{(t)} \mapsto \pi^{(t+1)}\) by averaging responsibilities.</li>
-      <li><strong>Inner optimisation step:</strong> with \(\pi^{(t+1)}\) fixed, refine the site parameters
-      by running a few BFGS iterations on the inner variational objective (a smooth, strongly convex
-      function of the site parameters).</li>
-    </ul>
-    This is a two-layer <em>EM + BFGS</em> scheme; unlike closed-form CAVI, we deliberately solve
-    the inner optimisation problem numerically to first order.
-  </li>
-</ul>
+  <ul>
+    <li>the posterior means of the regression coefficients \(u^{(t)} \in \mathbb{R}^p\);</li>
+    <li>the learned prior weights \(\pi^{(t)} \in \Delta^{k-1}\) on the grid;</li>
+    <li>
+      a two-layer update:
+      <ul>
+        <li><strong>EM step.</strong> Update \(\pi^{(t)} \mapsto \pi^{(t+1)}\) by averaging
+          responsibilities across coordinates (standard EM for the mixing weights).</li>
+        <li><strong>Inner optimisation step (BFGS).</strong> With \(\pi^{(t+1)}\) held fixed, refine
+          the site-specific variational parameters by running a short BFGS loop on the inner
+          variational objective, starting from the previous iterate. Near the limiting fixed point
+          this inner objective is locally strongly convex in those parameters, so a few BFGS steps
+          are enough to drive the inner gradient down to a small level. Informally: in this local
+          regime, the inner solve is accurate enough that, to first order, the algorithm behaves
+          as if we had updated \(\pi\) and then plugged in the exact optimal sites for that prior.
+        </li>
+      </ul>
+      Unlike closed-form CAVI, this is a genuinely <em>two-layer EM + BFGS</em> scheme: we use a
+      numerical inner solver rather than a closed-form site update, and this turns out to matter
+      for the convergence behaviour below.
+    </li>
+  </ul>
 
-<p>
-To measure convergence, we monitor:
-</p>
+  <p>
+    To measure convergence, we monitor:
+  </p>
 
-<ul>
-  <li>
-    The L<sub>2</sub> change in the posterior mean:
+  <ul>
+    <li>
+      The L<sub>2</sub> change in the posterior mean:
+      \[
+        \Delta_u^{(t)} := \big\| u^{(t)} - u^{(t-1)} \big\|_2.
+      \]
+    </li>
+    <li>
+      The W<sub>1</sub> change in the prior:
+      \[
+        \Delta_\pi^{(t)} := W_1\big(\pi^{(t)}, \pi^{(t-1)}\big),
+      \]
+      computed on the same fixed grid \(\{a_\ell\}\).
+    </li>
+  </ul>
+
+  <p>
+    The off-diagonal coupling induced by the design is captured by
     \[
-      \Delta_u^{(t)} := \big\|u^{(t)} - u^{(t-1)}\big\|_2.
+      M \;:=\; \frac{X^\top X}{\sigma^2}
+      - \mathrm{diag}\Big(\frac{(X^\top X)_{11}}{\sigma^2},\dots,
+                           \frac{(X^\top X)_{pp}}{\sigma^2}\Big).
     \]
-  </li>
-  <li>
-    The W<sub>1</sub> change in the prior:
+    In our simulation setup (Gaussian design with \(X = X^{\text{raw}}/\sqrt{n}\),
+    \(X^{\text{raw}}_{ij} \sim N(0,1)\)), one can show
+    \(\|M\|_{\mathrm{op}} = O_{\mathbb{P}}(\sqrt{p/n})\); combined with the
+    high-dimensional regime \(p = o(n)\) assumed in
+    <a href="https://arxiv.org/pdf/2309.16843" target="_blank" rel="noopener">Mukherjee et al.</a>,
+    this implies \(\|M\|_{\mathrm{op}} \to 0\), which is a key ingredient in the theoretical analysis.
+    We only state the resulting theorem here and omit the proof on this page.
+  </p>
+
+  <h4>Theorem (Common-ratio convergence of the two diagnostics for this EM + BFGS scheme)</h4>
+
+  <p>
+    The phenomenon observed in the videos above is specific to the <em>two-layer</em> algorithm used
+    here: an EM-style update of the prior \(\pi\), followed by a local BFGS refinement of the site
+    parameters. It is <strong>not</strong> a generic property of all variational updates (for
+    example, a closed-form batch CAVI step need not exhibit this behaviour).
+  </p>
+
+  <p>Assume:</p>
+
+  <ol>
+    <li><strong>Weak regression coupling.</strong>
+      The off-diagonal interaction matrix \(M\) satisfies
+      \(\|M\|_{\mathrm{op}} = O_{\mathbb{P}}(\sqrt{p/n})\), so under \(p = o(n)\) we have
+      \(\|M\|_{\mathrm{op}} \to 0\).
+    </li>
+
+    <li><strong>Non-degenerate limiting prior.</strong>
+      The algorithm converges to a fixed point \((u^\star,\pi^\star)\) where the limiting prior
+      \(\pi^\star\) places positive mass on at least two grid points (the support of \(\pi^\star\)
+      is not a single atom).
+    </li>
+
+    <li><strong>Two-layer EM + BFGS update (inner-solver specific).</strong>
+      Each outer iteration \(t \mapsto t+1\) consists of:
+      <ul>
+        <li>an EM-style update \(\pi^{(t)} \mapsto \pi^{(t+1)}\) obtained by averaging the current
+            responsibilities;</li>
+        <li>a short BFGS run on the inner variational objective with \(\pi^{(t+1)}\) held fixed,
+            starting from the previous site parameters and stopped once the inner gradient is
+            numerically small. In a neighbourhood of the fixed point the inner objective is locally
+            strongly convex in the site parameters, and BFGS tracks the local optimum with
+            <em>first-order accuracy</em>.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <p>
+    Under these conditions there exists a constant \(\lambda \in (0,1)\) such that
     \[
-      \Delta_\pi^{(t)} := W_1\big(\pi^{(t)},\pi^{(t-1)}\big),
+      \lim_{t\to\infty}
+      \frac{\Delta_u^{(t-1)}}{\Delta_u^{(t)}} \;=\;
+      \lim_{t\to\infty}
+      \frac{\Delta_\pi^{(t-1)}}{\Delta_\pi^{(t)}} \;=\; \frac{1}{\lambda}.
     \]
-    computed on the same fixed grid \(\{a_\ell\}\).
-  </li>
-</ul>
+    In particular, for large \(t\),
+    \[
+      \Delta_u^{(t)} \approx c_u\,\lambda^{t}, \qquad
+      \Delta_\pi^{(t)} \approx c_\pi\,\lambda^{t}
+    \]
+    for some constants \(c_u,c_\pi>0\). Up to a vertical rescaling, the two diagnostics therefore
+    have the same geometric decay: this is exactly what the convergence videos are illustrating.
+  </p>
 
-<p>
-The off-diagonal coupling in the regression is encoded by the matrix
-\[
-  M \;:=\; \frac{X^\top X}{\sigma^2} - \mathrm{diag}\Big(\frac{(X^\top X)_{11}}{\sigma^2},\dots,
-  \frac{(X^\top X)_{pp}}{\sigma^2}\Big).
-\]
-A key structural condition is simply that the operator norm of this coupling is small,
-\(\|M\|_{\mathrm{op}} = o(1)\). For example, this holds with high probability when
-\(X = X^{\text{raw}} / \sqrt{n}\) with iid \(N(0,1)\) entries and \(p = o(n)\),
-which is exactly the high-dimensional regime assumed in the paper.
-</p>
+  <p>
+    <i>Remark.</i> The use of BFGS in the inner step is not just a numerical convenience: it is
+    precisely what makes the inner update behave, locally, like the exact optimiser for the current
+    prior. This “first-order exactness” is what drives the common-ratio limit for the two
+    diagnostics. A generic closed-form CAVI update for the sites does not necessarily share this
+    property, and may not produce the same matching behaviour.
+  </p>
 
-<h4>Theorem (Common-ratio convergence of the two diagnostics)</h4>
-
-<p>
-Assume:
-</p>
-
-<ol>
-  <li><strong>Weak coupling.</strong> The off-diagonal interaction matrix \(M\) satisfies
-  \(\|M\|_{\mathrm{op}} = o(1)\); for instance, this holds when \(X = X^{\text{raw}} / \sqrt{n}\),
-  \(X^{\text{raw}}_{ij} \sim N(0,1)\) and \(p=o(n)\).</li>
-
-  <li><strong>Non-degenerate limit prior.</strong> The algorithm converges to a fixed point
-  \((u^\star,\pi^\star)\) where the limiting prior \(\pi^\star\) puts positive mass on at least two grid
-  points (the “active” support size is \(\ge 2\)).</li>
-
-  <li><strong>Two-layer EM + BFGS update.</strong> Each outer iteration \(t\mapsto t+1\) consists of:
-    <ul>
-      <li>an EM-type update of the prior weights \(\pi^{(t)}\mapsto \pi^{(t+1)}\) by averaging site responsibilities;</li>
-      <li>a small BFGS run on the inner variational objective (with \(\pi^{(t+1)}\) held fixed), carried out until the
-      gradient of the inner objective is of order \(o\big(\|\pi^{(t+1)}-\pi^\star\|\big)\).
-      Intuitively: the inner optimisation is solved <em>accurately enough</em> that, at first order,
-      it behaves like the exact minimiser for the current prior.</li>
-    </ul>
-  </li>
-</ol>
-
-<p>
-Then there exists a constant \(\lambda \in (0,1)\) such that the two diagnostics have the same asymptotic
-ratio:
-\[
-  \lim_{t\to\infty} \frac{\Delta_u^{(t-1)}}{\Delta_u^{(t)}} \;=\;
-  \lim_{t\to\infty} \frac{\Delta_\pi^{(t-1)}}{\Delta_\pi^{(t)}} \;=\; \frac{1}{\lambda}.
-\]
-In particular, for large \(t\),
-\[
-  \Delta_u^{(t)} \;\approx\; c_u\,\lambda^{\,t},\qquad
-  \Delta_\pi^{(t)} \;\approx\; c_\pi\,\lambda^{\,t},
-\]
-for some constants \(c_u,c_\pi>0\).
-Up to a vertical rescaling, the two curves therefore have the <em>same geometric decay</em>.
-</p>
-
-<p>
-The constant \(\lambda\) is the dominant eigenvalue of the local linearisation of the
-full EM + BFGS map around the fixed point \((u^\star,\pi^\star)\). In other words,
-\(\lambda\) is the effective contraction factor of one full outer iteration. Because the inner
-step is solved by BFGS to first order, the local behaviour of the algorithm is controlled by a
-single, well-defined \(\lambda\), and both diagnostics inherit this same rate.
-This is precisely why, in the videos above, the
-<span style="white-space:nowrap;">L<sub>2</sub> change in posterior mean</span>
-and the <span style="white-space:nowrap;">W<sub>1</sub> change in the prior</span>
-have almost identical “shape” on a log scale.
-</p>
-
-<p>
-<i>Degenerate edge case.</i> If the limiting prior \(\pi^\star\) collapses to a single grid point, both
-diagnostics drop to zero in finitely many steps and the ratio becomes vacuous; the theorem is
-intended for the more interesting regime where the limiting prior retains a genuinely
-high-dimensional support.
-</p>
+  <p>
+    The constant \(\lambda\) is the dominant eigenvalue of the local linearisation of the full
+    EM + BFGS map around the fixed point \((u^\star,\pi^\star)\). In other words, \(\lambda\) is the
+    effective contraction factor of one outer iteration. Because the inner step is solved (locally)
+    to first order, both diagnostics inherit this same rate, which explains why the
+    <span style="white-space:nowrap;">L<sub>2</sub> change in posterior mean</span> and the
+    <span style="white-space:nowrap;">W<sub>1</sub> change in the prior</span> have almost identical
+    “shape” on a log scale.
+  </p>
 
 </section>
+
   <footer class="footer">
     © <span id="year"></span> Samprit Chakraborty · VEB 
   </footer>
