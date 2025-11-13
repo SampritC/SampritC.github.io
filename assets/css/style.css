@@ -10,15 +10,14 @@
   --font-alt: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
-  /* Dark (default) */
   --bg: #020817;
   --bg-soft: rgba(6, 11, 25, 0.98);
   --text: #e5e7eb;
   --muted: #9ca3af;
-  --accent: #38bdf8;            /* sky for dark */
+  --accent: #38bdf8; /* sky for dark */
   --border: rgba(148, 163, 253, 0.22);
 
-  --link-color: #38bdf8;        /* links: sky in dark */
+  --link-color: #38bdf8;
   --link-hover: #7dd3fc;
 
   --radius-lg: 24px;
@@ -26,7 +25,7 @@
   --shadow-soft: 0 26px 90px rgba(15, 23, 42, 0.9);
   --transition-fast: 0.18s ease-in-out;
 
-  --base-font-size: 17px;       /* slightly larger for readability */
+  --base-font-size: 17px; /* slightly larger */
 }
 
 [data-theme="light"] {
@@ -34,10 +33,10 @@
   --bg-soft: #ffffff;
   --text: #111827;
   --muted: #6b7280;
-  --accent: #1d4ed8;            /* deep blue for accents */
+  --accent: #1d4ed8; /* deep blue */
   --border: #e5e7eb;
 
-  --link-color: #1d4ed8;        /* links: deep blue in light */
+  --link-color: #1d4ed8;
   --link-hover: #1d4ed8;
 
   --shadow-soft: 0 16px 46px rgba(15, 23, 42, 0.08);
@@ -67,9 +66,7 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -120,35 +117,26 @@ body::after {
 }
 
 [data-theme="light"] body::before,
-[data-theme="light"] body::after {
-  display: none; /* clean in light mode */
-}
+[data-theme="light"] body::after { display: none; }
 
 @keyframes twinkle {
-  0%   { opacity: 0.3; transform: translate3d(0, 0, 0); }
-  100% { opacity: 0.9; transform: translate3d(-14px, -10px, 0); }
+  0%   { opacity: 0.3; transform: translate3d(0,0,0); }
+  100% { opacity: 0.9; transform: translate3d(-14px,-10px,0); }
 }
 
 /* =========================
    Typography & Links
    ========================= */
 
-p {
-  margin: 0 0 0.7em;
-  max-width: 70rem;
-}
+p { margin: 0 0 0.7em; max-width: 70rem; }
 
 a {
   color: var(--link-color);
   text-decoration: none; /* no underline */
   transition: color var(--transition-fast), opacity var(--transition-fast);
 }
-
 a:hover,
-a:focus-visible {
-  color: var(--link-hover);
-  opacity: 0.9;
-}
+a:focus-visible { color: var(--link-hover); opacity: 0.9; }
 
 /* =========================
    Shell + Header
@@ -160,15 +148,13 @@ a:focus-visible {
   padding: 30px 22px 40px;
 }
 
-.site-header {
-  margin-bottom: 30px;
-}
+.site-header { margin-bottom: 30px; }
 
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px; /* bring photo closer */
+  gap: 24px;
   padding: 24px 24px 22px;
   background: var(--bg-soft);
   border-radius: var(--radius-lg);
@@ -177,11 +163,7 @@ a:focus-visible {
   backdrop-filter: blur(20px);
 }
 
-.header-text {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
+.header-text { display: flex; flex-direction: column; gap: 6px; }
 
 .site-name {
   font-size: 2.05rem;
@@ -189,24 +171,13 @@ a:focus-visible {
   letter-spacing: 0.02em;
 }
 
-.site-tagline {
-  font-family: var(--font-alt);
-  font-size: 1rem;
-  color: var(--muted);
-}
+.site-tagline { font-family: var(--font-alt); font-size: 1rem; color: var(--muted); }
 
-.site-affiliation {
-  font-size: 0.92rem;
-  color: var(--muted);
-}
+.site-affiliation { font-size: 0.92rem; color: var(--muted); }
 
 .header-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px;
-  margin-top: 6px;
+  display: flex; flex-wrap: wrap; gap: 9px; margin-top: 6px;
 }
-
 .header-links a {
   font-size: 0.8rem;
   padding: 5px 10px;
@@ -216,40 +187,21 @@ a:focus-visible {
   background: transparent;
   transition: all var(--transition-fast);
 }
+.header-links a:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-1px); }
 
-.header-links a:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-  transform: translateY(-1px);
-}
+.header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
 
-.header-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 10px;
-}
-
-/* Slightly larger portrait to balance header */
+/* Portrait */
 .photo-frame {
-  width: 168px;
-  height: 168px;
-  border-radius: 999px;
-  overflow: hidden;
+  width: 150px; height: 150px;
+  border-radius: 999px; overflow: hidden;
   background:
     radial-gradient(circle at 30% 0, rgba(56,189,248,0.26), transparent),
     radial-gradient(circle at 80% 90%, rgba(79,70,229,0.24), transparent),
     #020817;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
 }
-
-.photo-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+.photo-frame img { width: 100%; height: 100%; object-fit: cover; }
 
 .theme-toggle {
   margin-top: 8px;
@@ -263,12 +215,7 @@ a:focus-visible {
   cursor: pointer;
   transition: all var(--transition-fast);
 }
-
-.theme-toggle:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-  transform: translateY(-1px);
-}
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-1px); }
 
 /* =========================
    Two-column Layout
@@ -282,7 +229,6 @@ a:focus-visible {
 }
 
 /* Left: contents index */
-
 .side-menu {
   position: sticky;
   top: 130px;
@@ -290,7 +236,6 @@ a:focus-visible {
   font-size: 0.86rem;
   color: var(--muted);
 }
-
 .side-menu-title {
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -298,30 +243,12 @@ a:focus-visible {
   color: var(--muted);
   margin-bottom: 8px;
 }
-
-.side-menu nav {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.side-menu a {
-  color: var(--muted);
-  padding: 3px 0;
-  border-radius: 6px;
-}
-
-.side-menu a:hover {
-  color: var(--accent);
-}
+.side-menu nav { display: flex; flex-direction: column; gap: 4px; }
+.side-menu a { color: var(--muted); padding: 3px 0; border-radius: 6px; }
+.side-menu a:hover { color: var(--accent); }
 
 /* Right: content */
-
-.main-content {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
+.main-content { display: flex; flex-direction: column; gap: 18px; }
 
 .section {
   background: var(--bg-soft);
@@ -331,7 +258,6 @@ a:focus-visible {
   box-shadow: var(--shadow-soft);
   backdrop-filter: blur(16px);
 }
-
 .section h2 {
   margin: 0 0 8px;
   font-size: 1.04rem;
@@ -341,111 +267,43 @@ a:focus-visible {
   color: var(--accent);
   font-family: var(--font-alt);
 }
-
 .section p,
-.section li {
-  font-size: 0.98rem;
-  color: var(--text);
-}
+.section li { font-size: 0.98rem; color: var(--text); }
+.section-intro { font-size: 0.86rem; color: var(--muted); }
 
-.section-intro {
-  font-size: 0.86rem;
-  color: var(--muted);
-}
-
-/* =========================
-   Lists & math helpers (global)
-   ========================= */
-
+/* Basic math block helper */
+.math-block { text-align: center; margin: 6px 0 10px; }
 .section ul, .section ol { margin-left: 1.1rem; padding-left: 1.1rem; }
 .section li { margin: 4px 0; }
-.math-block { text-align: center; margin: 6px 0 10px; }
 
-/* --- Stable layout for the theorem section (works on desktop + mobile) --- */
-#theorem { contain: layout; }                      /* isolate layout to prevent auto “repairs” */
-#theorem p { margin: 0 0 0.8em; }
+/* Lists / items */
+.item-list { list-style: none; padding: 0; margin: 0; }
+.item-list li { margin-bottom: 10px; }
+.item-title, .pub-title { font-weight: 600; }
+.item-label, .pub-venue, .pub-authors { font-size: 0.8rem; color: var(--muted); }
 
-#theorem ul, #theorem ol {
-  list-style-position: outside;
-  margin: 0 0 0.9em 1.25em;
-  padding: 0;
-}
-#theorem li { margin: 0.35em 0; }
-
-#theorem .math-block,
-#theorem .math-line {
-  display: block;
-  text-align: center;
-  margin: 6px 0 10px;
-}
-
-/* Make MathJax containers behave inline-block so lists don’t break */
-#theorem mjx-container {
-  display: inline-block !important;
-  vertical-align: middle;
-}
-
-#theorem h4 { margin-top: 1rem; }
-
-/* =========================
-   Project / figure cards
-   ========================= */
-
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 10px;
-  margin-top: 8px;
-}
-
+/* Project / figure cards */
+.project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; margin-top: 8px; }
 .project-card {
   padding: 10px 10px 9px;
   border-radius: var(--radius-md);
   background-color: rgba(2, 6, 23, 0.98);
   border: 1px solid var(--border);
   box-shadow: 0 14px 40px rgba(15, 23, 42, 0.9);
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+  display: flex; flex-direction: column; gap: 3px;
   transition: all var(--transition-fast);
 }
-
-[data-theme="light"] .project-card {
-  background-color: var(--bg-soft);
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
-}
-
-.project-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.95);
-  border-color: var(--accent);
-}
-
+[data-theme="light"] .project-card { background-color: var(--bg-soft); box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06); }
+.project-card:hover { transform: translateY(-3px); box-shadow: 0 18px 50px rgba(15, 23, 42, 0.95); border-color: var(--accent); }
 .project-name { font-size: 0.9rem; font-weight: 600; }
 .project-desc { font-size: 0.8rem; color: var(--muted); }
-
-.project-meta {
-  font-size: 0.72rem;
-  color: var(--muted);
-  display: flex;
-  justify-content: space-between;
-  gap: 4px;
-}
-
+.project-meta { font-size: 0.72rem; color: var(--muted); display: flex; justify-content: space-between; gap: 4px; }
 .project-link { font-size: 0.78rem; }
 
-/* =========================
-   VEB page: figures & videos
-   ========================= */
+/* Figure list on VEB page (stacked) */
+.figure-list { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
 
-.figure-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 8px;
-}
-
-/* Side-by-side video row */
+/* Side-by-side videos */
 .video-row {
   display: flex;
   flex-wrap: wrap;
@@ -454,32 +312,17 @@ a:focus-visible {
   align-items: flex-start;
   justify-content: space-between;
 }
-
-.video-col {
-  flex: 1 1 360px;       /* grow, shrink, base width */
-  max-width: 48%;
-}
-
+.video-col { flex: 1 1 260px; min-width: 260px; }
 .veb-video {
   width: 100%;
-  max-width: 720px;
   display: block;
-  margin: 10px auto 0;
+  margin-top: 6px;
   border-radius: 12px;
   box-shadow: 0 14px 40px rgba(15, 23, 42, 0.9);
   background-color: #000;
 }
 
-/* Stack videos on small screens */
-@media (max-width: 900px) {
-  .video-row { flex-direction: column; }
-  .video-col { max-width: 100%; }
-}
-
-/* =========================
-   Inline code / math
-   ========================= */
-
+/* Inline code / math */
 code, kbd, samp {
   font-family: var(--font-mono);
   font-size: 0.8rem;
@@ -488,18 +331,11 @@ code, kbd, samp {
   background-color: rgba(15, 23, 42, 0.98);
   color: #bfdbfe;
 }
-
 [data-theme="light"] code,
 [data-theme="light"] kbd,
-[data-theme="light"] samp {
-  background-color: #111827;
-  color: #bfdbfe;
-}
+[data-theme="light"] samp { background-color: #111827; color: #bfdbfe; }
 
-/* =========================
-   Footer
-   ========================= */
-
+/* Footer */
 .footer {
   max-width: 1180px;
   margin: 20px auto 0;
@@ -516,40 +352,49 @@ code, kbd, samp {
 @media (max-width: 900px) {
   .site-shell { padding: 22px 14px 26px; }
 
-  .header-inner {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 18px;
-  }
+  .header-inner { flex-direction: row; align-items: flex-start; gap: 18px; }
 
-  .photo-frame { width: 110px; height: 110px; }
+  .photo-frame { width: 96px; height: 96px; }
 
-  .page-layout {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    margin-top: 18px;
-  }
+  .page-layout { grid-template-columns: 1fr; gap: 16px; margin-top: 18px; }
 
   .side-menu {
     position: static;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    display: flex; flex-wrap: wrap; gap: 10px;
     padding: 10px 10px 6px;
     background: var(--bg-soft);
     border-radius: var(--radius-md);
     border: 1px solid var(--border);
     box-shadow: var(--shadow-soft);
   }
-
-  .side-menu-title {
-    width: 100%;
-    margin-bottom: 2px;
-  }
-
-  .side-menu nav {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 8px 12px;
-  }
+  .side-menu-title { width: 100%; margin-bottom: 2px; }
+  .side-menu nav { flex-direction: row; flex-wrap: wrap; gap: 8px 12px; }
+  .video-row { flex-direction: column; }
 }
+
+/* =========================
+   Theorem Section — robust layout (GLOBAL)
+   ========================= */
+
+/* Turn selected <p> into bullets without changing your text */
+#theorem .p-bullet{
+  display: list-item;
+  list-style: disc;
+  list-style-position: outside;
+  margin: 0 0 .55em 1.3em;
+  padding-left: .2em;
+}
+#theorem .p-sub{
+  display: list-item;
+  list-style: circle;
+  list-style-position: outside;
+  margin: 0 0 .45em 2.2em;
+  padding-left: .2em;
+}
+#theorem .p-note{ margin: .4em 0 .8em; }
+
+/* Math blocks + MathJax SVG */
+#theorem .math-block { display: block; text-align: center; margin: 6px 0 10px; }
+#theorem .math-block mjx-container[jax="SVG"] { display: inline-block !important; vertical-align: middle; }
+
+#theorem h4 { margin-top: 1rem; }
