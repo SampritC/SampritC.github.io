@@ -357,6 +357,9 @@ a:focus-visible {
   font-size: 0.86rem;
   color: var(--muted);
 }
+.math-block { text-align: center; margin: 6px 0 10px; }
+.section ul, .section ol { margin-left: 1.1rem; padding-left: 1.1rem; }
+.section li { margin: 4px 0; }
 
 /* Lists */
 
