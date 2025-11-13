@@ -342,7 +342,7 @@
              <section id="theorem" class="section">
   <h2>Simulation to Theory</h2>
 
-  <p>
+  <p style="text-align:center;">
     The two convergence videos above are not just a numerical coincidence: in this regime, the
     <span style="white-space:nowrap;">L<sub>2</sub> change in the posterior mean</span> and the
     <span style="white-space:nowrap;">W<sub>1</sub> change in the prior</span> really do decay at
@@ -350,7 +350,7 @@
     animations are hinting at.
   </p>
 
-  <p>
+  <p style="text-align:center;">
     In these simulations the algorithm runs on a fixed 1D grid
     \(\{a_\ell\}_{\ell=1}^k \subset [-A,A]\) (here \(A = 1.5\)). At outer iteration
     \(t = 0,1,2,\dots\), we track:
@@ -363,16 +363,16 @@
   <p class="p-sub"><strong>Inner optimisation step (BFGS).</strong> With \(\pi^{(t+1)}\) fixed, refine the site-specific variational parameters via a short BFGS loop on the inner objective, starting from the previous iterate.</p>
   <p class="p-note">Unlike closed-form CAVI, this is a genuinely <em>two-layer EM + BFGS</em> scheme; the numerical inner solver matters for the convergence behaviour stated below.</p>
 
-  <p>To measure convergence, we monitor:</p>
+  <p style="text-align:center;">To measure convergence, we monitor:</p>
 
-  <p>The L<sub>2</sub> change in the posterior mean:</p>
+  <p style="text-align:center;">The L<sub>2</sub> change in the posterior mean:</p>
   <div class="math-block">
     \[
       \Delta_u^{(t)} := \big\| u^{(t)} - u^{(t-1)} \big\|_2 .
     \]
   </div>
 
-  <p>The W<sub>1</sub> change in the prior:</p>
+  <p style="text-align:center;">The W<sub>1</sub> change in the prior:</p>
   <div class="math-block">
     \[
       \Delta_\pi^{(t)} := W_1\!\big(\pi^{(t)}, \pi^{(t-1)}\big),
@@ -380,14 +380,13 @@
   </div>
   <p>computed on the same fixed grid \(\{a_\ell\}\).</p>
 
-  <p>The off-diagonal coupling induced by the design is captured by</p>
+  <p style="text-align:center;">The off-diagonal coupling induced by the design is captured by</p>
   <div class="math-block">
     \[
       M \;:=\; \frac{X^\top X}{\sigma^2}
       - \mathrm{diag}\!\Big(\frac{(X^\top X)_{11}}{\sigma^2},\dots,\frac{(X^\top X)_{pp}}{\sigma^2}\Big).
     \]
   </div>
-  <p>
     In our theorem we assume \(\|M\|_{\mathrm{op}} = O_{\mathbb{P}}(\sqrt{p/n})\); combined with the assumption
     \(p = o(n)\) in
     <a href="https://arxiv.org/pdf/2309.16843" target="_blank" rel="noopener">Mukherjee et al.</a>,
@@ -395,7 +394,7 @@
   </p>
 
   <h4>Theorem (Common-ratio convergence for this EM + BFGS scheme)</h4>
-  <p>
+  <p style="text-align:center;">
     The phenomenon observed in the videos is specific to the <em>two-layer</em> algorithm: an EM-style update of \(\pi\),
     followed by a local BFGS refinement of the site parameters. A closed-form batch CAVI step need not exhibit this.
   </p>
