@@ -565,19 +565,19 @@ samp {
     flex-wrap: wrap;
     gap: 8px 12px;
   }
-   /* --- Robust list + math layout just for the #theorem section --- */
-#theorem { contain: layout; }                 /* isolates layout */
-#theorem ul, #theorem ol {
-  list-style-position: outside;
-  margin: 0 0 0.9em 1.25em;                  /* stable indent */
-  padding: 0;
-}
-#theorem li { margin: 0.35em 0; }
+   /* Stable layout for the theorem section (safe with MathJax) */
+#theorem { contain: layout; }
+#theorem p { margin: 0 0 0.8em; }
 #theorem .math-block {
-  display: block;                             /* block-level wrapper for MathJax */
+  display: block;
   text-align: center;
   margin: 6px 0 10px;
 }
-#theorem p { margin: 0 0 0.8em; }
+/* Make MathJax’s SVG container behave nicely in blocks */
+#theorem .math-block mjx-container[jax="SVG"] {
+  display: inline-block !important;
+  vertical-align: middle;
+}
+#theorem h4 { margin-top: 1rem; }
 
 }
