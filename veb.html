@@ -337,9 +337,134 @@
       </main>
     </div>
   </div>
+</section>
+      <section id="theorem" class="section">
+      <h2>Convergence theorem for the two diagnostics (EM + BFGS regime)</h2>
 
+<p>
+The two videos above are not just a numerical coincidence: in this regime, the
+<span style="white-space:nowrap;">L<sub>2</sub> change in the posterior mean</span> and the
+<span style="white-space:nowrap;">W<sub>1</sub> change in the prior</span> really do decay at
+essentially the <em>same geometric rate</em>.
+The theorem below formalises exactly what the animations are hinting at.
+</p>
+
+<p>
+Recall that the algorithm runs in <strong>β-space</strong> with a fixed 1D grid
+\(\{a_\ell\}_{\ell=1}^K\subset[-A,A]\). At outer iteration \(t=0,1,2,\dots\), we track:
+</p>
+
+<ul>
+  <li>The posterior means of the regression coefficients \(u^{(t)}\in\mathbb{R}^p\) (β-space);</li>
+  <li>The learned prior weights \(\pi^{(t)}\in\Delta_K\) on the grid;</li>
+  <li>An outer update that has two layers:
+    <ul>
+      <li><strong>EM step:</strong> update \(\pi^{(t)} \mapsto \pi^{(t+1)}\) by averaging responsibilities.</li>
+      <li><strong>Inner optimisation step:</strong> with \(\pi^{(t+1)}\) fixed, refine the site parameters
+      by running a few BFGS iterations on the inner variational objective (a smooth, strongly convex
+      function of the site parameters).</li>
+    </ul>
+    This is a two-layer <em>EM + BFGS</em> scheme; unlike closed-form CAVI, we deliberately solve
+    the inner optimisation problem numerically to first order.
+  </li>
+</ul>
+
+<p>
+To measure convergence, we monitor:
+</p>
+
+<ul>
+  <li>
+    The L<sub>2</sub> change in the posterior mean:
+    \[
+      \Delta_u^{(t)} := \big\|u^{(t)} - u^{(t-1)}\big\|_2.
+    \]
+  </li>
+  <li>
+    The W<sub>1</sub> change in the prior:
+    \[
+      \Delta_\pi^{(t)} := W_1\big(\pi^{(t)},\pi^{(t-1)}\big),
+    \]
+    computed on the same fixed grid \(\{a_\ell\}\).
+  </li>
+</ul>
+
+<p>
+The off-diagonal coupling in the regression is encoded by the matrix
+\[
+  M \;:=\; \frac{X^\top X}{\sigma^2} - \mathrm{diag}\Big(\frac{(X^\top X)_{11}}{\sigma^2},\dots,
+  \frac{(X^\top X)_{pp}}{\sigma^2}\Big).
+\]
+A key structural condition is simply that the operator norm of this coupling is small,
+\(\|M\|_{\mathrm{op}} = o(1)\). For example, this holds with high probability when
+\(X = X^{\text{raw}} / \sqrt{n}\) with iid \(N(0,1)\) entries and \(p = o(n)\),
+which is exactly the high-dimensional regime assumed in the paper.
+</p>
+
+<h4>Theorem (Common-ratio convergence of the two diagnostics)</h4>
+
+<p>
+Assume:
+</p>
+
+<ol>
+  <li><strong>Weak coupling.</strong> The off-diagonal interaction matrix \(M\) satisfies
+  \(\|M\|_{\mathrm{op}} = o(1)\); for instance, this holds when \(X = X^{\text{raw}} / \sqrt{n}\),
+  \(X^{\text{raw}}_{ij} \sim N(0,1)\) and \(p=o(n)\).</li>
+
+  <li><strong>Non-degenerate limit prior.</strong> The algorithm converges to a fixed point
+  \((u^\star,\pi^\star)\) where the limiting prior \(\pi^\star\) puts positive mass on at least two grid
+  points (the “active” support size is \(\ge 2\)).</li>
+
+  <li><strong>Two-layer EM + BFGS update.</strong> Each outer iteration \(t\mapsto t+1\) consists of:
+    <ul>
+      <li>an EM-type update of the prior weights \(\pi^{(t)}\mapsto \pi^{(t+1)}\) by averaging site responsibilities;</li>
+      <li>a small BFGS run on the inner variational objective (with \(\pi^{(t+1)}\) held fixed), carried out until the
+      gradient of the inner objective is of order \(o\big(\|\pi^{(t+1)}-\pi^\star\|\big)\).
+      Intuitively: the inner optimisation is solved <em>accurately enough</em> that, at first order,
+      it behaves like the exact minimiser for the current prior.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>
+Then there exists a constant \(\lambda \in (0,1)\) such that the two diagnostics have the same asymptotic
+ratio:
+\[
+  \lim_{t\to\infty} \frac{\Delta_u^{(t-1)}}{\Delta_u^{(t)}} \;=\;
+  \lim_{t\to\infty} \frac{\Delta_\pi^{(t-1)}}{\Delta_\pi^{(t)}} \;=\; \frac{1}{\lambda}.
+\]
+In particular, for large \(t\),
+\[
+  \Delta_u^{(t)} \;\approx\; c_u\,\lambda^{\,t},\qquad
+  \Delta_\pi^{(t)} \;\approx\; c_\pi\,\lambda^{\,t},
+\]
+for some constants \(c_u,c_\pi>0\).
+Up to a vertical rescaling, the two curves therefore have the <em>same geometric decay</em>.
+</p>
+
+<p>
+The constant \(\lambda\) is the dominant eigenvalue of the local linearisation of the
+full EM + BFGS map around the fixed point \((u^\star,\pi^\star)\). In other words,
+\(\lambda\) is the effective contraction factor of one full outer iteration. Because the inner
+step is solved by BFGS to first order, the local behaviour of the algorithm is controlled by a
+single, well-defined \(\lambda\), and both diagnostics inherit this same rate.
+This is precisely why, in the videos above, the
+<span style="white-space:nowrap;">L<sub>2</sub> change in posterior mean</span>
+and the <span style="white-space:nowrap;">W<sub>1</sub> change in the prior</span>
+have almost identical “shape” on a log scale.
+</p>
+
+<p>
+<i>Degenerate edge case.</i> If the limiting prior \(\pi^\star\) collapses to a single grid point, both
+diagnostics drop to zero in finitely many steps and the ratio becomes vacuous; the theorem is
+intended for the more interesting regime where the limiting prior retains a genuinely
+high-dimensional support.
+</p>
+
+</section>
   <footer class="footer">
-    © <span id="year"></span> Samprit Chakraborty · VEB Simulations
+    © <span id="year"></span> Samprit Chakraborty · VEB 
   </footer>
 
   <script src="assets/js/main.js"></script>
